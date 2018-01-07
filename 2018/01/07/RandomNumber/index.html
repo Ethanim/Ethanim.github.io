@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JAVA,算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原理简介生成指定范围内的随机整数的在上一篇文章里介绍了，这篇文章，在其基础上添加不重复，方法如下 方法一方法一采用了Set集合，通过Set的特性，也就是Set集合中只能存放不同元素的特性， 首先定一个Set集合，用循环生成随机数，放入集合， 如果放入成功就执行下一次循环，失败就代表这个数字已经出现在集合中了，i--,重新执行本次循环，直到循环结束 此方法的有点是简单易懂，也不需要什么算法， 缺点就">
+<meta name="keywords" content="JAVA,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成指定范围内不重复的随机数">
+<meta property="og:url" content="http://yoursite.com/2018/01/07/RandomNumber/index.html">
+<meta property="og:site_name" content="以诺网">
+<meta property="og:description" content="原理简介生成指定范围内的随机整数的在上一篇文章里介绍了，这篇文章，在其基础上添加不重复，方法如下 方法一方法一采用了Set集合，通过Set的特性，也就是Set集合中只能存放不同元素的特性， 首先定一个Set集合，用循环生成随机数，放入集合， 如果放入成功就执行下一次循环，失败就代表这个数字已经出现在集合中了，i--,重新执行本次循环，直到循环结束 此方法的有点是简单易懂，也不需要什么算法， 缺点就">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-07T13:37:54.424Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生成指定范围内不重复的随机数">
+<meta name="twitter:description" content="原理简介生成指定范围内的随机整数的在上一篇文章里介绍了，这篇文章，在其基础上添加不重复，方法如下 方法一方法一采用了Set集合，通过Set的特性，也就是Set集合中只能存放不同元素的特性， 首先定一个Set集合，用循环生成随机数，放入集合， 如果放入成功就执行下一次循环，失败就代表这个数字已经出现在集合中了，i--,重新执行本次循环，直到循环结束 此方法的有点是简单易懂，也不需要什么算法， 缺点就">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/07/RandomNumber/"/>
+
+
+
+
+
+  <title>生成指定范围内不重复的随机数 | 以诺网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">以诺网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/07/RandomNumber/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enoch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以诺网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">生成指定范围内不重复的随机数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-07T20:39:10+08:00">
+                2018-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h1><pre><code>生成指定范围内的随机整数的在上一篇文章里介绍了，这篇文章，在其基础上添加不重复，方法如下
+</code></pre><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><pre><code>方法一采用了Set集合，通过Set的特性，也就是Set集合中只能存放不同元素的特性，
+首先定一个Set集合，用循环生成随机数，放入集合，
+如果放入成功就执行下一次循环，失败就代表这个数字已经出现在集合中了，i--,重新执行本次循环，直到循环结束
+此方法的有点是简单易懂，也不需要什么算法，
+缺点就是随机出的数字是有序下的随机数，HashSet虽然是随机存放，但随机数所存放的顺序是已经固定的
+
+Random ra = new Random();
+Set&lt;Integer&gt; si = new HashSet&lt;&gt;();// 创建set集合，存放随机数
+
+for (int i = 0; i &lt; num; i++) {
+    int ranNum = ra.nextInt(max - min + 1) + min; // 获取开始与结束之间的随机数
+    if (!si.add(ranNum)) // 把随机数存到集合中,如果添加失败，代表重复，i--，重新循环
+        i--;
+}
+</code></pre><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><pre><code>方法二是把随机数存放在数组里面，首先在外层for循环里生成一个随机数，
+把当前随机数存放在数组里，在通过内层for循环来判当前随机数是否与之前的每一个数相等，
+如果相等，i--，重新本次循环
+我带大家走一边流程，参数分别传入 min=1,max=10,num=5
+
+第一次循环 i=0, 内层循环 j&lt;=i-1 不成立，不进行比较
+第二次循环 i=1, 内层循环 j&lt;=i-1, 成立，此时 i 为1，j为 0 用 arr[0] 与 arr[1] 进行比较，重复的话 i-- 重新循环，
+第三次循环 i=2, 内层循环 j 的范围位 0~1, 即用 arr[2] 与 arr[0],arr[1]进行比较，
+第四次循环 i=3, 内层循环 j 的范围位 0~2, 即下标位3的与下位位0~2的进行比较，
+第五次循环 i=4, 内层循环 j 的范围位 0~3, 即下标位4的与下位位0~3的进行比较，
+如果以上比较有重复的，i--，重新本次循环，这样就随机到5个不同的数。
+
+Random ra = new Random();
+int[] arr = new int[num]; // 存放随机数数的数组
+
+for (int i = 0; i &lt; num; i++) {
+    int ranNum = ra.nextInt(max - min + 1) + min; // 获取开始与结束之间的随机数
+    arr[i] = ranNum;
+    for (int j = 0; j &lt;= i - 1; j++) {
+        if (arr[i] == arr[j]) { // 当前随机数与前一个相等，i--，重新随机
+            i--;
+            break;
+        }
+    }
+}
+</code></pre><h2 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h2><pre><code>方法三，先定义一个count来计算有效个数，有效个数小于所要生成数组的数量时成立，
+定义一个flag标志，初始位true，
+生成一个随机数，用这个随机数与数组中的每一个数进行比较，
+如果相等，标志改为false，然后下一次循环，
+如果不想等，标志默认位true，把当前随机出来的数，存放在数组里，并有效数字加1，
+当有效数组不小于数组长度时，退出循环，这是，不同的随机数就存放到数组里，
+此方法每次生成的随机数都会与数组里每一个进行比较，因此效率比方法二略低
+
+Random ra = new Random();
+int[] arr = new int[num]; // 存放随机数数的数组
+
+int count = 0; // 计算有效个数
+
+while (count &lt; arr.length) {
+    int ranNum = ra.nextInt(max - min + 1) + min; // 获取开始与结束之间的随机数
+    boolean flag = true; // 定一个标志，用来判断是否重复
+    for (int i = 0; i &lt; arr.length; i++) {
+        if (ranNum == arr[i]) {
+            flag = false;
+            break;
+        }
+    }
+    if (flag) {
+        arr[count] = ranNum;
+        count++; // 有效个数加一
+    }
+}
+</code></pre><h1 id="完整代码实现"><a href="#完整代码实现" class="headerlink" title="完整代码实现"></a>完整代码实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">import java.util.HashSet;</span><br><span class="line">import java.util.Random;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">public class RandomNumber &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * 方法一：通过Set集合的特性，生成随机数</span><br><span class="line">	 * </span><br><span class="line">	 * @param min</span><br><span class="line">	 *            随机数的开始范围</span><br><span class="line">	 * @param max</span><br><span class="line">	 *            随机数的结束范围</span><br><span class="line">	 * @param num</span><br><span class="line">	 *            随机数的个数</span><br><span class="line">	 */</span><br><span class="line">	public static void makeRandomNumber(int min, int max, int num) &#123;</span><br><span class="line">		Random ra = new Random();</span><br><span class="line">		Set&lt;Integer&gt; si = new HashSet&lt;&gt;();// 创建set集合，存放随机数</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; num; i++) &#123;</span><br><span class="line">			int ranNum = ra.nextInt(max - min + 1) + min; // 获取开始与结束之间的随机数</span><br><span class="line">			if (!si.add(ranNum)) // 把随机数存到集合中,如果添加失败，代表重复，i--，重新循环</span><br><span class="line">				i--;</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i : si)// 遍历并打印集合</span><br><span class="line">			System.out.print(i + &quot;\t&quot;);</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 方法二：通过新随机的数与前一个比较，如果当等，代表重复，i--，重新循环</span><br><span class="line">	 * </span><br><span class="line">	 * @param min</span><br><span class="line">	 *            随机数的开始范围</span><br><span class="line">	 * @param max</span><br><span class="line">	 *            随机数的结束范围</span><br><span class="line">	 * @param num</span><br><span class="line">	 *            随机数的个数</span><br><span class="line">	 */</span><br><span class="line">	public static void makeRandomNumber2(int min, int max, int num) &#123;</span><br><span class="line">		Random ra = new Random();</span><br><span class="line">		int[] arr = new int[num]; // 存放随机数数的数组</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; num; i++) &#123;</span><br><span class="line">			int ranNum = ra.nextInt(max - min + 1) + min; // 获取开始与结束之间的随机数</span><br><span class="line">			arr[i] = ranNum;</span><br><span class="line">			for (int j = 0; j &lt;= i - 1; j++) &#123;</span><br><span class="line">				if (arr[i] == arr[j]) &#123; // 当前随机数与前一个相等，i--，重新随机</span><br><span class="line">					i--;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i : arr)</span><br><span class="line">			System.out.print(i + &quot;\t&quot;);</span><br><span class="line">		System.out.println();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 方法三：通过有效个数和标志来判断是否重复</span><br><span class="line">	 * </span><br><span class="line">	 * @param min</span><br><span class="line">	 *            随机数的开始范围</span><br><span class="line">	 * @param max</span><br><span class="line">	 *            随机数的结束范围</span><br><span class="line">	 * @param num</span><br><span class="line">	 *            随机数的个数</span><br><span class="line">	 */</span><br><span class="line">	public static void makeRandomNumber3(int min, int max, int num) &#123;</span><br><span class="line">		Random ra = new Random();</span><br><span class="line">		int[] arr = new int[num]; // 存放随机数数的数组</span><br><span class="line"></span><br><span class="line">		int count = 0; // 计算有效个数</span><br><span class="line"></span><br><span class="line">		while (count &lt; arr.length) &#123;</span><br><span class="line">			int ranNum = ra.nextInt(max - min + 1) + min; // 获取开始与结束之间的随机数</span><br><span class="line">			boolean flag = true; // 定一个标志，用来判断是否重复</span><br><span class="line">			for (int i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">				if (ranNum == arr[i]) &#123;</span><br><span class="line">					flag = false;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if (flag) &#123;</span><br><span class="line">				arr[count] = ranNum;</span><br><span class="line">				count++; // 有效个数加一</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i : arr)</span><br><span class="line">			System.out.print(i + &quot;\t&quot;);</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		System.out.println(&quot;方法一：&quot;);</span><br><span class="line">		RandomNumber.makeRandomNumber(10, 20, 5);</span><br><span class="line">		System.out.println(&quot;方法二：&quot;);</span><br><span class="line">		RandomNumber.makeRandomNumber2(10, 20, 5);</span><br><span class="line">		System.out.println(&quot;方法三：&quot;);</span><br><span class="line">		RandomNumber.makeRandomNumber3(10, 20, 5);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h1><pre><code>方法一：
+16    20    10    11    12    
+方法二：
+19    15    12    17    11    
+方法三：
+16    15    14    13    17    
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/06/RandomNum/" rel="next" title="生成指定范围内的随机整数">
+                <i class="fa fa-chevron-left"></i> 生成指定范围内的随机整数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Enoch</p>
+              <p class="site-description motion-element" itemprop="description">爱是永不止息</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原理简介"><span class="nav-number">1.</span> <span class="nav-text">原理简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一"><span class="nav-number">1.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二"><span class="nav-number">1.2.</span> <span class="nav-text">方法二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法三"><span class="nav-number">1.3.</span> <span class="nav-text">方法三</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整代码实现"><span class="nav-number">2.</span> <span class="nav-text">完整代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试结果"><span class="nav-number">3.</span> <span class="nav-text">测试结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enoch</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
