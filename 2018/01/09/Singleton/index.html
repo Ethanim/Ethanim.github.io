@@ -105,20 +105,18 @@
 
 
 
-<meta name="description" content="原理描述方法一Math.random()函数生成的结果是一个 [0,1) 之间的小数，不包含1， 如图所示可以推出,求任意随机数的公式，Math.random()*(max-min)+min， 但是不包含max，求随指定范内的随机数需要再加一，即 Math.random()*(max-min+1)+min， 由于所得出的是小数，需要向下取整，在转换乘整数  方法二Random ra = new R">
+<meta name="description" content="单例模式介绍单例(Singleton)设计模式是JAVA中常用的设计模式之一。 在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：  1. 有些类创建比较复杂，这样可以节省系统开销。 2. 省去了new运算符，降低了系统内容的使用频率，减轻了GC的压力。 3. 有些类只需要使用一个，这样就可以使用单例了。 编码实现单例模式分为饿汉式和懒汉式两种，饿汉式比较">
 <meta name="keywords" content="JAVA,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生成指定范围内的随机整数">
-<meta property="og:url" content="http://yoursite.com/2018/01/06/RandomNum/index.html">
+<meta property="og:title" content="单例设计模式之饿汉式与懒汉式">
+<meta property="og:url" content="http://yoursite.com/2018/01/09/Singleton/index.html">
 <meta property="og:site_name" content="以诺网">
-<meta property="og:description" content="原理描述方法一Math.random()函数生成的结果是一个 [0,1) 之间的小数，不包含1， 如图所示可以推出,求任意随机数的公式，Math.random()*(max-min)+min， 但是不包含max，求随指定范内的随机数需要再加一，即 Math.random()*(max-min+1)+min， 由于所得出的是小数，需要向下取整，在转换乘整数  方法二Random ra = new R">
+<meta property="og:description" content="单例模式介绍单例(Singleton)设计模式是JAVA中常用的设计模式之一。 在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：  1. 有些类创建比较复杂，这样可以节省系统开销。 2. 省去了new运算符，降低了系统内容的使用频率，减轻了GC的压力。 3. 有些类只需要使用一个，这样就可以使用单例了。 编码实现单例模式分为饿汉式和懒汉式两种，饿汉式比较">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/img/RandomNum1.png">
-<meta property="og:updated_time" content="2018-01-07T12:51:27.146Z">
+<meta property="og:updated_time" content="2018-01-09T11:59:51.067Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="生成指定范围内的随机整数">
-<meta name="twitter:description" content="原理描述方法一Math.random()函数生成的结果是一个 [0,1) 之间的小数，不包含1， 如图所示可以推出,求任意随机数的公式，Math.random()*(max-min)+min， 但是不包含max，求随指定范内的随机数需要再加一，即 Math.random()*(max-min+1)+min， 由于所得出的是小数，需要向下取整，在转换乘整数  方法二Random ra = new R">
-<meta name="twitter:image" content="http://yoursite.com/img/RandomNum1.png">
+<meta name="twitter:title" content="单例设计模式之饿汉式与懒汉式">
+<meta name="twitter:description" content="单例模式介绍单例(Singleton)设计模式是JAVA中常用的设计模式之一。 在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：  1. 有些类创建比较复杂，这样可以节省系统开销。 2. 省去了new运算符，降低了系统内容的使用频率，减轻了GC的压力。 3. 有些类只需要使用一个，这样就可以使用单例了。 编码实现单例模式分为饿汉式和懒汉式两种，饿汉式比较">
 
 
 
@@ -148,13 +146,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/06/RandomNum/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/09/Singleton/"/>
 
 
 
 
 
-  <title>生成指定范围内的随机整数 | 以诺网</title>
+  <title>单例设计模式之饿汉式与懒汉式 | 以诺网</title>
   
 
 
@@ -291,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/06/RandomNum/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/Singleton/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Enoch">
@@ -308,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">生成指定范围内的随机整数</h1>
+          <h1 class="post-title" itemprop="name headline">单例设计模式之饿汉式与懒汉式</h1>
         
 
         <div class="post-meta">
@@ -320,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-06T21:45:37+08:00">
-                2018-01-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T19:18:39+08:00">
+                2018-01-09
               </time>
             
 
@@ -380,21 +378,20 @@
       
 
       
-        <h1 id="原理描述"><a href="#原理描述" class="headerlink" title="原理描述"></a>原理描述</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><pre><code>Math.random()函数生成的结果是一个 [0,1) 之间的小数，不包含1，
-如图所示可以推出,求任意随机数的公式，Math.random()*(max-min)+min，
-但是不包含max，求随指定范内的随机数需要再加一，即 Math.random()*(max-min+1)+min，
-由于所得出的是小数，需要向下取整，在转换乘整数
-</code></pre><p><img src="/img/RandomNum1.png" alt=""></p>
-<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><pre><code>Random ra = new Random(); ra.nextInt(10)；
-可以生成一个 [0,10)，也就是 [0,9] 之间的整数，
-max - min 最小值可以求出两数之间的差，再加上最小值即可求 [min,max) 之间的值，
-若要包含max，所以在加1
-生成任意随即数的公式如下：
-ra.nextInt(max - min + 1) + min;
-</code></pre><h1 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Random;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 求指定范围的随机整数</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class TestRandom &#123;</span><br><span class="line">	// 方法一：</span><br><span class="line">	public static void RandomNumber(int min, int max) &#123;</span><br><span class="line">		double ran = Math.random() * (max - min + 1) + min;// 获取一个制定范围的随机小数</span><br><span class="line">		int r = (int) Math.floor(ran);// 转换成整数</span><br><span class="line">		System.out.println(r);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 方法二：</span><br><span class="line">	public static void RandomNumber2(int min, int max) &#123;</span><br><span class="line">		Random ra = new Random();</span><br><span class="line">		int ran = ra.nextInt(max - min + 1) + min;// 获取一个制定范围的随机数</span><br><span class="line">		System.out.println(ran);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		RandomNumber(1, 10);</span><br><span class="line">		RandomNumber2(1, 10);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h1><pre><code>6
-2
-</code></pre>
+        <h1 id="单例模式介绍"><a href="#单例模式介绍" class="headerlink" title="单例模式介绍"></a>单例模式介绍</h1><pre><code>单例(Singleton)设计模式是JAVA中常用的设计模式之一。
+在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：
+
+1. 有些类创建比较复杂，这样可以节省系统开销。
+2. 省去了new运算符，降低了系统内容的使用频率，减轻了GC的压力。
+3. 有些类只需要使用一个，这样就可以使用单例了。
+</code></pre><h1 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h1><pre><code>单例模式分为饿汉式和懒汉式两种，饿汉式比较饿，所以一上来就new对象；
+而懒汉式比较懒，什么时候用到，什么时候才new对象。
+
+1. 私有化构造方法，这就防止了该类被new对象
+2. 提供本类类型的引用，指向本类类型的对象，在类内部new一个对象，用来返回出去
+3. 提供公有的get方法，返回sin实例，把sin单例对象返回出去
+</code></pre><h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 单例设计模式之懒汉式</span><br><span class="line"> */</span><br><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">	// 1.私有化构造方法</span><br><span class="line">	private Singleton() &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 2.提供本类类型的引用，指向本类类型的对象</span><br><span class="line">	private static Singleton sin = new Singleton();</span><br><span class="line"></span><br><span class="line">	// 3.提供公有的get方法，返回sin实例</span><br><span class="line">	public static Singleton getInstance() &#123;</span><br><span class="line">		return sin;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 单例设计模式之饿汉式</span><br><span class="line"> */</span><br><span class="line">public class Singleton2 &#123;</span><br><span class="line">	</span><br><span class="line">	// 1.私有化构造方法</span><br><span class="line">	private Singleton2() &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 2.提供本类类型的引用，指向空</span><br><span class="line">	private static Singleton2 sin = null;</span><br><span class="line"></span><br><span class="line">	// 3.提供公有的get方法，若sin为空，new一个本类类型的对象，返回出去</span><br><span class="line">	public static Singleton2 getInstance() &#123;</span><br><span class="line">		if (sin == null)</span><br><span class="line">			sin = new Singleton2();</span><br><span class="line">		return sin;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -426,8 +423,8 @@ ra.nextInt(max - min + 1) + min;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/05/NarcissisticNumber/" rel="next" title="打印水仙花数">
-                <i class="fa fa-chevron-left"></i> 打印水仙花数
+              <a href="/2018/01/08/FibonacciSequence/" rel="next" title="计算第n位的斐波那契数列的值">
+                <i class="fa fa-chevron-left"></i> 计算第n位的斐波那契数列的值
               </a>
             
           </div>
@@ -436,8 +433,8 @@ ra.nextInt(max - min + 1) + min;
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/07/RandomNumber/" rel="prev" title="生成指定范围内不重复的随机数">
-                生成指定范围内不重复的随机数 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/09/CountStringNum/" rel="prev" title="统计字符串中每组数字出现的次数">
+                统计字符串中每组数字出现的次数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -572,7 +569,7 @@ ra.nextInt(max - min + 1) + min;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原理描述"><span class="nav-number">1.</span> <span class="nav-text">原理描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一"><span class="nav-number">1.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二"><span class="nav-number">1.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编码实现"><span class="nav-number">2.</span> <span class="nav-text">编码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试结果"><span class="nav-number">3.</span> <span class="nav-text">测试结果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单例模式介绍"><span class="nav-number">1.</span> <span class="nav-text">单例模式介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编码实现"><span class="nav-number">2.</span> <span class="nav-text">编码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#饿汉式"><span class="nav-number">2.1.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒汉式"><span class="nav-number">2.2.</span> <span class="nav-text">懒汉式</span></a></li></ol></li></ol></div>
             
 
           </div>
