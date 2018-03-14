@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="JAVA,算法," />
+  <meta name="keywords" content="JAVA,查找算法," />
 
 
 
@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="原理描述方法一方法一采用了递推的思想来求一个数的阶乘， 假如 num = 5; 计算过程就是返回 1*2*3*4*5 的结果。   方法二方法二采用了递归思想，也就是方法自己调用自己， 递归需要一个出口，出口就是 1的阶乘是1， 每次要求 num 的阶乘，可以转换为 求 num * (num-1) 的阶乘，就有了如下代码。 编码实现123456789101112131415161718192021">
-<meta name="keywords" content="JAVA,算法">
+<meta name="description" content="二分查找简介二分查找也称折半查找，效率很高，但是对于查找数据要求有序。 编码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576package site.enoc">
+<meta name="keywords" content="JAVA,查找算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算阶乘">
-<meta property="og:url" content="http://yoursite.com/2018/01/08/Factorial/index.html">
+<meta property="og:title" content="二分查找算法">
+<meta property="og:url" content="http://yoursite.com/2018/03/14/BinarySearch/index.html">
 <meta property="og:site_name" content="以诺网">
-<meta property="og:description" content="原理描述方法一方法一采用了递推的思想来求一个数的阶乘， 假如 num = 5; 计算过程就是返回 1*2*3*4*5 的结果。   方法二方法二采用了递归思想，也就是方法自己调用自己， 递归需要一个出口，出口就是 1的阶乘是1， 每次要求 num 的阶乘，可以转换为 求 num * (num-1) 的阶乘，就有了如下代码。 编码实现123456789101112131415161718192021">
+<meta property="og:description" content="二分查找简介二分查找也称折半查找，效率很高，但是对于查找数据要求有序。 编码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576package site.enoc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-08T13:57:48.577Z">
+<meta property="og:updated_time" content="2018-03-14T13:10:29.531Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算阶乘">
-<meta name="twitter:description" content="原理描述方法一方法一采用了递推的思想来求一个数的阶乘， 假如 num = 5; 计算过程就是返回 1*2*3*4*5 的结果。   方法二方法二采用了递归思想，也就是方法自己调用自己， 递归需要一个出口，出口就是 1的阶乘是1， 每次要求 num 的阶乘，可以转换为 求 num * (num-1) 的阶乘，就有了如下代码。 编码实现123456789101112131415161718192021">
+<meta name="twitter:title" content="二分查找算法">
+<meta name="twitter:description" content="二分查找简介二分查找也称折半查找，效率很高，但是对于查找数据要求有序。 编码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576package site.enoc">
 
 
 
@@ -146,13 +146,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/08/Factorial/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/14/BinarySearch/"/>
 
 
 
 
 
-  <title>计算阶乘 | 以诺网</title>
+  <title>二分查找算法 | 以诺网</title>
   
 
 
@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/08/Factorial/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/BinarySearch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Enoch">
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">计算阶乘</h1>
+          <h1 class="post-title" itemprop="name headline">二分查找算法</h1>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T21:50:08+08:00">
-                2018-01-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T21:03:46+08:00">
+                2018-03-14
               </time>
             
 
@@ -378,14 +378,10 @@
       
 
       
-        <h1 id="原理描述"><a href="#原理描述" class="headerlink" title="原理描述"></a>原理描述</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><pre><code>方法一采用了递推的思想来求一个数的阶乘，
-假如 num = 5; 计算过程就是返回 1*2*3*4*5 的结果。  
-</code></pre><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><pre><code>方法二采用了递归思想，也就是方法自己调用自己，
-递归需要一个出口，出口就是 1的阶乘是1，
-每次要求 num 的阶乘，可以转换为 求 num * (num-1) 的阶乘，就有了如下代码。
-</code></pre><h1 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 计算阶乘 </span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Factorial &#123;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * @param num 要计算阶乘的数字</span><br><span class="line">	 * @return 返回计算阶乘后的数字</span><br><span class="line">	 */</span><br><span class="line">	public static int countFactorial(int num)&#123;</span><br><span class="line">		int res = 1;</span><br><span class="line">		for(int i=1; i&lt;=num; i++)</span><br><span class="line">			res *=i;</span><br><span class="line">		return res;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * @param num 要计算阶乘的数字</span><br><span class="line">	 * @return 返回计算阶乘后的数字</span><br><span class="line">	 */</span><br><span class="line">	public static int countFactorial2(int num)&#123;</span><br><span class="line">		if(num == 1)</span><br><span class="line">			return 1;</span><br><span class="line">		return num * countFactorial2(num -1);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int num = 5;</span><br><span class="line">		System.out.println(&quot;递推计算&quot; + num + &quot;的阶乘为：&quot; + countFactorial(num));</span><br><span class="line">		System.out.println(&quot;递归计算&quot; + num + &quot;的阶乘为：&quot; + countFactorial2(num));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h1><pre><code>递推计算5的阶乘为：120
-递归计算5的阶乘为：120
+        <h1 id="二分查找简介"><a href="#二分查找简介" class="headerlink" title="二分查找简介"></a>二分查找简介</h1><pre><code>二分查找也称折半查找，效率很高，但是对于查找数据要求有序。
+</code></pre><h1 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">package site.enoch.search;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 二分法查找算法</span><br><span class="line"> */</span><br><span class="line">public class BinarySearch &#123;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 递归方法</span><br><span class="line">	 * @param elem 要查找到的元素</span><br><span class="line">	 * @param arr 要查找的数组</span><br><span class="line">	 * @param left 数组起始下标</span><br><span class="line">	 * @param right 数组末尾下标</span><br><span class="line">	 * @return 找到返回对应下表，没找到返回-1</span><br><span class="line">	 */</span><br><span class="line">	public int binarySearch(int elem, int[] arr, int left, int right)&#123;</span><br><span class="line">		//如果开始下标大于结束下标，代表没找到，直接返回-1</span><br><span class="line">		if(left&gt;right)&#123;</span><br><span class="line">			return -1;</span><br><span class="line">		&#125;</span><br><span class="line">		int middle = (left+right)/2;//计算中间元素下表</span><br><span class="line">		if(arr[middle] &gt; elem)&#123;</span><br><span class="line">			//中间值大于要找的元素，去左边找</span><br><span class="line">			return binarySearch(elem, arr, left, middle-1);</span><br><span class="line">		&#125;</span><br><span class="line">		if(arr[middle] &lt; elem)&#123;</span><br><span class="line">			//中间值大于要找的元素，去右边找</span><br><span class="line">			return binarySearch(elem, arr, middle+1, right);</span><br><span class="line">		&#125;</span><br><span class="line">		if(arr[middle] == elem)&#123;</span><br><span class="line">			//找到了，返回下标</span><br><span class="line">			return middle;</span><br><span class="line">		&#125;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 非递归方法</span><br><span class="line">	 * @param elem 要查找到的元素</span><br><span class="line">	 * @param arr 要查找到的数组</span><br><span class="line">	 * @return 到返回对应下表，没找到返回-1</span><br><span class="line">	 */</span><br><span class="line">	public int directBinarySearch(int elem, int[] arr)&#123;</span><br><span class="line">		int left = 0;</span><br><span class="line">		int right = arr.length-1;</span><br><span class="line">		while(left&lt;=right)&#123;</span><br><span class="line">			int middle = (left+right)/2;</span><br><span class="line">			if(arr[middle] &gt; elem)&#123;</span><br><span class="line">				//中间值大于要找的元素，去左边找</span><br><span class="line">				right = middle - 1;</span><br><span class="line">			&#125;else if(arr[middle] &lt; elem)&#123;</span><br><span class="line">				//中间值大于要找的元素，去右边找</span><br><span class="line">				left = middle + 1;</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">				//找到了，返回下标</span><br><span class="line">				return middle;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int[] arr = new int[]&#123;2,4,5,7,9,10,43,56,60,70,78,79,345&#125;;</span><br><span class="line">		BinarySearch bs = new BinarySearch();</span><br><span class="line">		int index = bs.binarySearch(79, arr, 0, arr.length-1);</span><br><span class="line">		int index2 = bs.directBinarySearch(79, arr);</span><br><span class="line">		if(index != -1)</span><br><span class="line">			System.out.println(&quot;找到元素了，下标为：&quot; + index);</span><br><span class="line">		else</span><br><span class="line">			System.out.println(&quot;没找到元素&quot;);</span><br><span class="line">		if(index2 != -1)</span><br><span class="line">			System.out.println(&quot;找到元素了，下标为：&quot; + index);</span><br><span class="line">		else</span><br><span class="line">			System.out.println(&quot;没找到元素&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h1><pre><code>找到元素了，下标为：11
+找到元素了，下标为：11
 </code></pre>
       
     </div>
@@ -405,7 +401,7 @@
           
             <a href="/tags/JAVA/" rel="tag"># JAVA</a>
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/查找算法/" rel="tag"># 查找算法</a>
           
         </div>
       
@@ -418,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/08/NumberRepeat/" rel="next" title="统计数字出现次数">
-                <i class="fa fa-chevron-left"></i> 统计数字出现次数
+              <a href="/2018/03/14/BasicSort/" rel="next" title="基数排序算法">
+                <i class="fa fa-chevron-left"></i> 基数排序算法
               </a>
             
           </div>
@@ -428,8 +424,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/08/FibonacciSequence/" rel="prev" title="计算第n位的斐波那契数列的值">
-                计算第n位的斐波那契数列的值 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/14/SecondPower/" rel="prev" title="判断一个数是否是2的幂次方">
+                判断一个数是否是2的幂次方 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,7 +560,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原理描述"><span class="nav-number">1.</span> <span class="nav-text">原理描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一"><span class="nav-number">1.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二"><span class="nav-number">1.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编码实现"><span class="nav-number">2.</span> <span class="nav-text">编码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试结果"><span class="nav-number">3.</span> <span class="nav-text">测试结果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找简介"><span class="nav-number">1.</span> <span class="nav-text">二分查找简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编码实现"><span class="nav-number">2.</span> <span class="nav-text">编码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试结果"><span class="nav-number">3.</span> <span class="nav-text">测试结果</span></a></li></ol></div>
             
 
           </div>
