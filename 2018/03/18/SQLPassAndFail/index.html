@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SQL," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目介绍这是我在美团二面遇到的题，应该没记错 学生表，课程表，成绩表，一条sql写出每门课程的及格和不及格的学生数量 下面的SQL以Mysql数据库为准 建表create table student(     s_id int auto_increment primary key,     name varchar(10) ); create table course(     c_id int">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三表查询及格和不及格的学生数量">
+<meta property="og:url" content="http://yoursite.com/2018/03/18/SQLPassAndFail/index.html">
+<meta property="og:site_name" content="以诺网">
+<meta property="og:description" content="题目介绍这是我在美团二面遇到的题，应该没记错 学生表，课程表，成绩表，一条sql写出每门课程的及格和不及格的学生数量 下面的SQL以Mysql数据库为准 建表create table student(     s_id int auto_increment primary key,     name varchar(10) ); create table course(     c_id int">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/SQLPassAndFail1.png">
+<meta property="og:image" content="http://yoursite.com/img/SQLPassAndFail2.png">
+<meta property="og:image" content="http://yoursite.com/img/SQLPassAndFail3.png">
+<meta property="og:image" content="http://yoursite.com/img/SQLPassAndFail4.png">
+<meta property="og:updated_time" content="2018-03-18T14:50:30.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="三表查询及格和不及格的学生数量">
+<meta name="twitter:description" content="题目介绍这是我在美团二面遇到的题，应该没记错 学生表，课程表，成绩表，一条sql写出每门课程的及格和不及格的学生数量 下面的SQL以Mysql数据库为准 建表create table student(     s_id int auto_increment primary key,     name varchar(10) ); create table course(     c_id int">
+<meta name="twitter:image" content="http://yoursite.com/img/SQLPassAndFail1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/18/SQLPassAndFail/"/>
+
+
+
+
+
+  <title>三表查询及格和不及格的学生数量 | 以诺网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">以诺网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/SQLPassAndFail/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enoch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以诺网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">三表查询及格和不及格的学生数量</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-18T22:02:27+08:00">
+                2018-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题目介绍"><a href="#题目介绍" class="headerlink" title="题目介绍"></a>题目介绍</h2><pre><code>这是我在美团二面遇到的题，应该没记错
+学生表，课程表，成绩表，一条sql写出每门课程的及格和不及格的学生数量
+下面的SQL以Mysql数据库为准
+</code></pre><h2 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h2><pre><code>create table student(
+    s_id int auto_increment primary key,
+    name varchar(10)
+);
+create table course(
+    c_id int auto_increment primary key,
+    c_name varchar(20)
+);
+create table stu_cou(
+    s_id int,
+    c_id int,
+    score int
+);    
+</code></pre><h2 id="插入测试数据"><a href="#插入测试数据" class="headerlink" title="插入测试数据"></a>插入测试数据</h2><pre><code>insert into student values(null,&apos;小明&apos;);
+insert into student values(null,&apos;小红&apos;);
+insert into student values(null,&apos;小王&apos;);
+insert into course values(null,&apos;语文&apos;);
+insert into course values(null,&apos;数学&apos;);
+insert into course values(null,&apos;英语&apos;);
+insert into stu_cou values(1,1,50);
+insert into stu_cou values(1,2,70);
+insert into stu_cou values(1,3,90);
+insert into stu_cou values(2,1,65);
+insert into stu_cou values(2,2,90);
+insert into stu_cou values(2,3,80);
+insert into stu_cou values(3,1,49);
+insert into stu_cou values(3,2,59);
+insert into stu_cou values(3,3,60);    
+</code></pre><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><pre><code>因为是求数量，学生表内存放的是学生的名字，所以无用
+先分别连表查处及格和不及格的人数，再把两个表连起来
+
+select t.c_name,pass,fail from 
+(select c.c_name,count(*) pass from course c join stu_cou sc on c.c_id = sc.c_id
+where score&gt;=60 group by c.c_name) t left join 
+(select c.c_name,count(*) fail from course c join stu_cou sc on c.c_id = sc.c_id
+where score&lt;60 group by c.c_name) t2 on t.c_name = t2.c_name
+</code></pre><h3 id="查询结果"><a href="#查询结果" class="headerlink" title="查询结果"></a>查询结果</h3><p><img src="/img/SQLPassAndFail1.png" alt=""></p>
+<h4 id="有些问题"><a href="#有些问题" class="headerlink" title="有些问题"></a>有些问题</h4><pre><code>此方法有一个问题，如果交换查询及格和不及格语句位置，就会出现如下问题
+因为测试数据中，英语都是及格的，左表（别名t表）查询不到不及格的英语，
+左连接查询以左表为主，导致没有这条数据
+MySQL中没有全外连接，用UNION也会出现些问题，
+如果换成Oracle的full join 也有问题
+此方法受限，需要左表能查到全部数据
+
+select t.c_name,pass,fail from 
+(select c.c_name,count(*) fail from course c join stu_cou sc on c.c_id = sc.c_id
+where score&lt;60 group by c.c_name) t left join 
+(select c.c_name,count(*) pass from course c join stu_cou sc on c.c_id = sc.c_id
+where score&gt;=60 group by c.c_name) t2 on t.c_name = t2.c_name
+</code></pre><p><img src="/img/SQLPassAndFail2.png" alt=""></p>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><pre><code>用科目名称与(score&lt;60)分组，能分出每门课程及格与不及格的数量
+利用if来输出及格和不及格
+此方法数据看起来会有些多余，MySQL中可用，Oracle会报错
+
+select c.c_name,count(*),if(sc.score&lt;60,&apos;不及格&apos;,&apos;及格&apos;) score from course c 
+join stu_cou sc on c.c_id = sc.c_id
+group by  c.c_name,sc.score&lt;60
+</code></pre><h3 id="查询结果-1"><a href="#查询结果-1" class="headerlink" title="查询结果"></a>查询结果</h3><p><img src="/img/SQLPassAndFail3.png" alt=""></p>
+<h2 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h2><pre><code>先只通过stu_cou表来分别查询出及格人数和不及格人数，分别起别名(t,t2),
+在把course表，t表与t2表做连接起来，由于课程表是左表，所以不会出现方法一的情况
+此方法，MySQL与Oracle通用
+
+select c_name,pass,fail from course c left join 
+(select c_id,count(*) pass from stu_cou where score&gt;=60 group by c_id) t
+on c.c_id = t.c_id left join
+(select c_id,count(*) fail from stu_cou where score&lt;60 group by c_id) t2 
+on c.c_id = t2.c_id;
+</code></pre><h3 id="查询结果-2"><a href="#查询结果-2" class="headerlink" title="查询结果"></a>查询结果</h3><p><img src="/img/SQLPassAndFail4.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/18/美团面经/" rel="next" title="美团Java后台工程师，一面，二面，面经">
+                <i class="fa fa-chevron-left"></i> 美团Java后台工程师，一面，二面，面经
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Enoch</p>
+              <p class="site-description motion-element" itemprop="description">爱是永不止息</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目介绍"><span class="nav-number">1.</span> <span class="nav-text">题目介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建表"><span class="nav-number">2.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入测试数据"><span class="nav-number">3.</span> <span class="nav-text">插入测试数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一"><span class="nav-number">4.</span> <span class="nav-text">方法一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询结果"><span class="nav-number">4.1.</span> <span class="nav-text">查询结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有些问题"><span class="nav-number">4.1.1.</span> <span class="nav-text">有些问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二"><span class="nav-number">5.</span> <span class="nav-text">方法二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询结果-1"><span class="nav-number">5.1.</span> <span class="nav-text">查询结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法三"><span class="nav-number">6.</span> <span class="nav-text">方法三</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询结果-2"><span class="nav-number">6.1.</span> <span class="nav-text">查询结果</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enoch</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
