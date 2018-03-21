@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="简介求二进制中1的个数 编码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748package site.enoch.binary;/** * 求二进制中1的个数 */public class BinaryCount &amp;#123;		/**	 * 方法一	 * 主要点在于">
+<meta name="description" content="简介求整数的二进制表达式中1的个数 编码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748package site.enoch.binary;/** * 求二进制中1的个数 */public class BinaryCount &amp;#123;		/**	 * 方法一	 *">
 <meta name="keywords" content="Java,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="求二进制中1的个数">
 <meta property="og:url" content="http://yoursite.com/2018/03/14/BinaryCount/index.html">
 <meta property="og:site_name" content="以诺网">
-<meta property="og:description" content="简介求二进制中1的个数 编码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748package site.enoch.binary;/** * 求二进制中1的个数 */public class BinaryCount &amp;#123;		/**	 * 方法一	 * 主要点在于">
+<meta property="og:description" content="简介求整数的二进制表达式中1的个数 编码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748package site.enoch.binary;/** * 求二进制中1的个数 */public class BinaryCount &amp;#123;		/**	 * 方法一	 *">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-18T13:57:32.846Z">
+<meta property="og:updated_time" content="2018-03-21T00:29:44.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="求二进制中1的个数">
-<meta name="twitter:description" content="简介求二进制中1的个数 编码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748package site.enoch.binary;/** * 求二进制中1的个数 */public class BinaryCount &amp;#123;		/**	 * 方法一	 * 主要点在于">
+<meta name="twitter:description" content="简介求整数的二进制表达式中1的个数 编码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748package site.enoch.binary;/** * 求二进制中1的个数 */public class BinaryCount &amp;#123;		/**	 * 方法一	 *">
 
 
 
@@ -378,7 +378,7 @@
       
 
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><pre><code>求二进制中1的个数
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><pre><code>求整数的二进制表达式中1的个数
 </code></pre><h1 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">package site.enoch.binary;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 求二进制中1的个数</span><br><span class="line"> */</span><br><span class="line">public class BinaryCount &#123;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 方法一</span><br><span class="line">	 * 主要点在于  n &amp;= n-1; 每计算一次，二进制的n就会少一个1</span><br><span class="line">	 * 奇数情况，假如n=13，n的二进制则为 1101，(n-1)的二进制则为 1100</span><br><span class="line">	 * &amp; 运算后，变为1100，就少了一个1</span><br><span class="line">	 * 偶数情况，假如n=12，n的二进制则为 1100，(n-1)的二进制则为 1011</span><br><span class="line">	 * &amp; 运算后，变为1000，也少了一个1</span><br><span class="line">	 * 这样就可以计算出1出现的次数了</span><br><span class="line">	 */</span><br><span class="line">	public static void method1(int n)&#123;</span><br><span class="line">		int count = 0;</span><br><span class="line">		while(n&gt;0)&#123;</span><br><span class="line">			count++;</span><br><span class="line">			n &amp;= n-1;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(count);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 方法二</span><br><span class="line">	 * (n&amp;1) == 1 就代表为奇数，即最后一位为1，计数加一</span><br><span class="line">	 * 每次循环 n&gt;&gt;1 代表移除最右边的一位数</span><br><span class="line">	 * 这样就统计出来了</span><br><span class="line">	 */</span><br><span class="line">	public static void method2(int n)&#123;</span><br><span class="line">		int count = 0;</span><br><span class="line">		while(n &gt; 0)&#123;</span><br><span class="line">			if( (n&amp;1) == 1 )</span><br><span class="line">				count++;</span><br><span class="line">			n &gt;&gt;= 1;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(count);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int n = 13;</span><br><span class="line">		method1(n);</span><br><span class="line">		method2(n);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h1 id="结果测试"><a href="#结果测试" class="headerlink" title="结果测试"></a>结果测试</h1><pre><code>3
 3
@@ -505,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -527,7 +527,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
