@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="注册并登录GithubSign up 注册，然后在，Sign in 登录。 创建项目与文件Start a project 创建一个项目这个项目，在GitHub中，叫做仓库（repository），点击 Create repository 就创建好了一个项目然后就可以创建文件，并提交，这样就创建好了一个文件 桌面版的下载与使用https://desktop.github.com 可以下载桌面版的Gi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GithubStudy">
+<meta property="og:url" content="http://yoursite.com/2018/03/22/GitHubStudy/index.html">
+<meta property="og:site_name" content="以诺网">
+<meta property="og:description" content="注册并登录GithubSign up 注册，然后在，Sign in 登录。 创建项目与文件Start a project 创建一个项目这个项目，在GitHub中，叫做仓库（repository），点击 Create repository 就创建好了一个项目然后就可以创建文件，并提交，这样就创建好了一个文件 桌面版的下载与使用https://desktop.github.com 可以下载桌面版的Gi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/1github.png">
+<meta property="og:image" content="http://yoursite.com/img/1.5github.png">
+<meta property="og:image" content="http://yoursite.com/img/2github.png">
+<meta property="og:image" content="http://yoursite.com/img/3github.png">
+<meta property="og:image" content="http://yoursite.com/img/4github.png">
+<meta property="og:image" content="http://yoursite.com/img/5github.png">
+<meta property="og:image" content="http://yoursite.com/img/5.5github.png">
+<meta property="og:image" content="http://yoursite.com/img/6github.png">
+<meta property="og:image" content="http://yoursite.com/img/7github.png">
+<meta property="og:image" content="http://yoursite.com/img/8github.png">
+<meta property="og:image" content="http://yoursite.com/img/9github.png">
+<meta property="og:image" content="http://yoursite.com/img/10github.png">
+<meta property="og:image" content="http://yoursite.com/img/12github.png">
+<meta property="og:image" content="http://yoursite.com/img/13github.png">
+<meta property="og:image" content="http://yoursite.com/img/14github.png">
+<meta property="og:image" content="http://yoursite.com/img/15github.png">
+<meta property="og:image" content="http://yoursite.com/img/16github.png">
+<meta property="og:image" content="http://yoursite.com/img/17github.png">
+<meta property="og:image" content="http://yoursite.com/img/18github.png">
+<meta property="og:image" content="http://yoursite.com/img/19github.png">
+<meta property="og:image" content="http://yoursite.com/img/20github.png">
+<meta property="og:image" content="http://yoursite.com/img/21github.png">
+<meta property="og:image" content="http://yoursite.com/img/22github.png">
+<meta property="og:image" content="http://yoursite.com/img/23github.png">
+<meta property="og:image" content="http://yoursite.com/img/23github.png">
+<meta property="og:updated_time" content="2018-03-22T16:00:30.649Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GithubStudy">
+<meta name="twitter:description" content="注册并登录GithubSign up 注册，然后在，Sign in 登录。 创建项目与文件Start a project 创建一个项目这个项目，在GitHub中，叫做仓库（repository），点击 Create repository 就创建好了一个项目然后就可以创建文件，并提交，这样就创建好了一个文件 桌面版的下载与使用https://desktop.github.com 可以下载桌面版的Gi">
+<meta name="twitter:image" content="http://yoursite.com/img/1github.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/22/GitHubStudy/"/>
+
+
+
+
+
+  <title>GithubStudy | 以诺网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">以诺网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/22/GitHubStudy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enoch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以诺网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GithubStudy</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T20:37:54+08:00">
+                2018-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="注册并登录Github"><a href="#注册并登录Github" class="headerlink" title="注册并登录Github"></a>注册并登录Github</h1><p>Sign up 注册，然后在，Sign in 登录。<br><img src="/img/1github.png" alt=""></p>
+<h1 id="创建项目与文件"><a href="#创建项目与文件" class="headerlink" title="创建项目与文件"></a>创建项目与文件</h1><p>Start a project 创建一个项目<br><img src="/img/1.5github.png" alt=""><br>这个项目，在GitHub中，叫做仓库（repository），点击 Create repository 就创建好了一个项目<br><img src="/img/2github.png" alt=""><br>然后就可以创建文件，并提交，这样就创建好了一个文件<br><img src="/img/3github.png" alt=""><br><img src="/img/4github.png" alt=""></p>
+<h1 id="桌面版的下载与使用"><a href="#桌面版的下载与使用" class="headerlink" title="桌面版的下载与使用"></a>桌面版的下载与使用</h1><p><a href="https://desktop.github.com" target="_blank" rel="noopener">https://desktop.github.com</a> 可以下载桌面版的GitHub<br><img src="/img/5github.png" alt=""><br>安装并打开，可以看到三个按钮，分别代表</p>
+<ul>
+<li>create 没有项目，创建一个项目</li>
+<li>add 本地已经有项目了，输入路径</li>
+<li>clone GitHub 上已有项目clone（下载）到本地<br><img src="/img/5.5github.png" alt=""><br>点击Create a new repository 可以在本地创建一个新的仓库<br><img src="/img/6github.png" alt=""><br>可以在本地仓库对应文件夹创建文件，蓝色代表选中，绿色代表未选中<br><img src="/img/7github.png" alt=""><br>可以对选中的进行提交，就会多一个版本<br><img src="/img/8github.png" alt=""><br>选中绿色的部分，可以第二次提交，也可以在History这看到以前的版本，回退到以前的版本<br><img src="/img/9github.png" alt=""><br>Publish repository 可以提交到远程仓库（GitHub）上<br><img src="/img/10github.png" alt=""><br>填上仓库名与描述，去掉私有的勾，就可以提交到远程仓库（GitHub）上了<br><img src="/img/12github.png" alt=""><br>在网页版GitHib中即可看到刚刚提交的仓库<br><img src="/img/13github.png" alt=""><h1 id="master分支与创建分支"><a href="#master分支与创建分支" class="headerlink" title="master分支与创建分支"></a>master分支与创建分支</h1>master分支是默认的分支，是放程序的地方，当有一个新的想法，但不想修改原来的代码，就可以创建一个分支，可以在新分支上进行修改，但不影响原来的内容<br><img src="/img/14github.png" alt=""><br>这里创建了一个 idea 分支<br><img src="/img/15github.png" alt=""><br><img src="/img/16github.png" alt=""><br>可以在 idea 分支创建文件，并提交，不会对master分支有影响<br><img src="/img/17github.png" alt=""><br>点击可以切换回master分支，可以看到在idea分支创建的文件没有了<br><img src="/img/18github.png" alt=""><br>也可以删除分支，默认分支是删除不了的<br><img src="/img/19github.png" alt=""><br>在网页端可以查看有哪些分支，也可以创建分支，在Settings里，也可以设置默认分支<br><img src="/img/20github.png" alt=""><h1 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h1>在次创建idea分支，并在idea分支中新建文本，当觉得idea分支的内容比较有用时，就可以合并分支，把idea分支中的内容合并到master分支中<br><img src="/img/21github.png" alt=""><br><img src="/img/22github.png" alt=""><br>master分支中就有了idea分支中的内容<br><img src="/img/23github.png" alt=""><blockquote>
+<p>如果两个人都修改同一个文件，修改地方不同，可以提交上<br>但是，如果修改同一个地方，就会产生冲突，可以查看冲突，删除冲突的标识符来解决。</p>
+</blockquote>
+</li>
+</ul>
+<p>最后，附一我理解的主页基本功能<br><img src="/img/23github.png" alt=""></p>
+<p>第一次写这种以图片为主的博客，对于GitHub我也是初学，这份笔记中也有很多不完整的地方，望见谅</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/21/TransmitValue/" rel="next" title="Java中值传递与引用传递的三种情况">
+                <i class="fa fa-chevron-left"></i> Java中值传递与引用传递的三种情况
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Enoch</p>
+              <p class="site-description motion-element" itemprop="description">爱是永不止息</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注册并登录Github"><span class="nav-number">1.</span> <span class="nav-text">注册并登录Github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建项目与文件"><span class="nav-number">2.</span> <span class="nav-text">创建项目与文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#桌面版的下载与使用"><span class="nav-number">3.</span> <span class="nav-text">桌面版的下载与使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#master分支与创建分支"><span class="nav-number">4.</span> <span class="nav-text">master分支与创建分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合并分支"><span class="nav-number">5.</span> <span class="nav-text">合并分支</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enoch</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
