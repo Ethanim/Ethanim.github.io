@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="单例模式介绍单例(Singleton)设计模式是JAVA中常用的设计模式之一。 在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：  1. 有些类创建比较复杂，这样可以节省系统开销。 2. 省去了new运算符，降低了系统内容的使用频率，减轻了GC的压力。 3. 有些类只需要使用一个，这样就可以使用单例了。 编码实现单例模式分为饿汉式和懒汉式两种，饿汉式比较">
+<meta name="description" content="设计模式（Design Pattern）是一套被反复使用、多数人只晓的、经过分类编目的、代码设计经验的总结。 目的使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 单例设计模式单例(Singleton)设计模式是JAVA中常用的设计模式之一。在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：  有些类创建比较复杂，这样可以节省系统开销">
 <meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例设计模式之饿汉式与懒汉式">
+<meta property="og:title" content="单例设计模式之饿汉式与懒汉式（Singleton）">
 <meta property="og:url" content="http://yoursite.com/2018/01/09/Singleton/index.html">
 <meta property="og:site_name" content="以诺网">
-<meta property="og:description" content="单例模式介绍单例(Singleton)设计模式是JAVA中常用的设计模式之一。 在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：  1. 有些类创建比较复杂，这样可以节省系统开销。 2. 省去了new运算符，降低了系统内容的使用频率，减轻了GC的压力。 3. 有些类只需要使用一个，这样就可以使用单例了。 编码实现单例模式分为饿汉式和懒汉式两种，饿汉式比较">
+<meta property="og:description" content="设计模式（Design Pattern）是一套被反复使用、多数人只晓的、经过分类编目的、代码设计经验的总结。 目的使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 单例设计模式单例(Singleton)设计模式是JAVA中常用的设计模式之一。在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：  有些类创建比较复杂，这样可以节省系统开销">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-18T13:55:16.672Z">
+<meta property="og:updated_time" content="2018-03-23T15:00:47.241Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例设计模式之饿汉式与懒汉式">
-<meta name="twitter:description" content="单例模式介绍单例(Singleton)设计模式是JAVA中常用的设计模式之一。 在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：  1. 有些类创建比较复杂，这样可以节省系统开销。 2. 省去了new运算符，降低了系统内容的使用频率，减轻了GC的压力。 3. 有些类只需要使用一个，这样就可以使用单例了。 编码实现单例模式分为饿汉式和懒汉式两种，饿汉式比较">
+<meta name="twitter:title" content="单例设计模式之饿汉式与懒汉式（Singleton）">
+<meta name="twitter:description" content="设计模式（Design Pattern）是一套被反复使用、多数人只晓的、经过分类编目的、代码设计经验的总结。 目的使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 单例设计模式单例(Singleton)设计模式是JAVA中常用的设计模式之一。在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：  有些类创建比较复杂，这样可以节省系统开销">
 
 
 
@@ -152,7 +152,7 @@
 
 
 
-  <title>单例设计模式之饿汉式与懒汉式 | 以诺网</title>
+  <title>单例设计模式之饿汉式与懒汉式（Singleton） | 以诺网</title>
   
 
 
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例设计模式之饿汉式与懒汉式</h1>
+          <h1 class="post-title" itemprop="name headline">单例设计模式之饿汉式与懒汉式（Singleton）</h1>
         
 
         <div class="post-meta">
@@ -378,20 +378,22 @@
       
 
       
-        <h1 id="单例模式介绍"><a href="#单例模式介绍" class="headerlink" title="单例模式介绍"></a>单例模式介绍</h1><pre><code>单例(Singleton)设计模式是JAVA中常用的设计模式之一。
-在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：
+        <h2 id="设计模式（Design-Pattern）"><a href="#设计模式（Design-Pattern）" class="headerlink" title="设计模式（Design Pattern）"></a>设计模式（Design Pattern）</h2><p>是一套被反复使用、多数人只晓的、经过分类编目的、代码设计经验的总结。</p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。</p>
+<h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><p>单例(Singleton)设计模式是JAVA中常用的设计模式之一。<br>在JAVA应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样设计有如下好处：</p>
+<ol>
+<li>有些类创建比较复杂，这样可以节省系统开销。</li>
+<li>省去了new运算符，降低了系统内容的使用频率，减轻了GC的压力。</li>
+<li>有些类只需要使用一个，这样就可以使用单例了。</li>
+</ol>
+<h2 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h2><p>单例模式分为饿汉式和懒汉式两种<br>饿汉式由于一上来就new对象，所以我们形象的成为饿汉式<br>而懒汉式用到的时候才new对象，我们称之为懒汉式</p>
+<h3 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 单例设计模式，饿汉式</span><br><span class="line"> */</span><br><span class="line">public class Singleton &#123;</span><br><span class="line">	//1.私有化构造方法，不允许外边直接创建对象</span><br><span class="line">	private Singleton()&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	//2.声明唯一的实例,使用 private static 修饰</span><br><span class="line">	private static Singleton instance = new Singleton();</span><br><span class="line">	//3.提供一个用于获取实例的方法，使用 public static 修饰</span><br><span class="line">	public static Singleton getInstance()&#123;</span><br><span class="line">		return instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 单例设计模式，懒汉式</span><br><span class="line"> */</span><br><span class="line">public class Singleton2 &#123;</span><br><span class="line">	//1.私有化构造方法，不允许外边直接创建对象</span><br><span class="line">	private Singleton2()&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	//2.声明唯一的实例,使用 private static 修饰</span><br><span class="line">	private static Singleton2 instance = null;</span><br><span class="line">	//3.提供一个用于获取实例的方法，使用 public static 修饰</span><br><span class="line">	public static Singleton2 getInstance()&#123;</span><br><span class="line">		if(instance == null)</span><br><span class="line">			instance = new Singleton2();</span><br><span class="line">		return instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="测试类与结果"><a href="#测试类与结果" class="headerlink" title="测试类与结果"></a>测试类与结果</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class SingletonTest &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//饿汉模式</span><br><span class="line">		Singleton s1 = Singleton.getInstance();</span><br><span class="line">		Singleton s2 = Singleton.getInstance();</span><br><span class="line">		if(s1 == s2)&#123;</span><br><span class="line">			System.out.println(&quot;s1与s2是一个对象&quot;);</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			System.out.println(&quot;s1与s2不是一个对象&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//懒汉模式</span><br><span class="line">		Singleton2 s3 = Singleton2.getInstance();</span><br><span class="line">		Singleton2 s4 = Singleton2.getInstance();</span><br><span class="line">		if(s3 == s4)&#123;</span><br><span class="line">			System.out.println(&quot;s3与s4是一个对象&quot;);</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			System.out.println(&quot;s3与s4不是一个对象&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>s1与s2是一个对象
+s3与s4是一个对象
+</code></pre><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>懒汉模式的特点是加载类时比较慢，但运行时获取对象的速度比较快，线程安全。<br>饿汉模式的特点是夹在类时比较快，但运行时获取对象的速度比较慢，线程不安全。</p>
 
-1. 有些类创建比较复杂，这样可以节省系统开销。
-2. 省去了new运算符，降低了系统内容的使用频率，减轻了GC的压力。
-3. 有些类只需要使用一个，这样就可以使用单例了。
-</code></pre><h1 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h1><pre><code>单例模式分为饿汉式和懒汉式两种，饿汉式比较饿，所以一上来就new对象；
-而懒汉式比较懒，什么时候用到，什么时候才new对象。
-
-1. 私有化构造方法，这就防止了该类被new对象
-2. 提供本类类型的引用，指向本类类型的对象，在类内部new一个对象，用来返回出去
-3. 提供公有的get方法，返回sin实例，把sin单例对象返回出去
-</code></pre><h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 单例设计模式之懒汉式</span><br><span class="line"> */</span><br><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">	// 1.私有化构造方法</span><br><span class="line">	private Singleton() &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 2.提供本类类型的引用，指向本类类型的对象</span><br><span class="line">	private static Singleton sin = new Singleton();</span><br><span class="line"></span><br><span class="line">	// 3.提供公有的get方法，返回sin实例</span><br><span class="line">	public static Singleton getInstance() &#123;</span><br><span class="line">		return sin;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 单例设计模式之饿汉式</span><br><span class="line"> */</span><br><span class="line">public class Singleton2 &#123;</span><br><span class="line">	</span><br><span class="line">	// 1.私有化构造方法</span><br><span class="line">	private Singleton2() &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 2.提供本类类型的引用，指向空</span><br><span class="line">	private static Singleton2 sin = null;</span><br><span class="line"></span><br><span class="line">	// 3.提供公有的get方法，若sin为空，new一个本类类型的对象，返回出去</span><br><span class="line">	public static Singleton2 getInstance() &#123;</span><br><span class="line">		if (sin == null)</span><br><span class="line">			sin = new Singleton2();</span><br><span class="line">		return sin;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -514,7 +516,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -569,7 +571,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单例模式介绍"><span class="nav-number">1.</span> <span class="nav-text">单例模式介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编码实现"><span class="nav-number">2.</span> <span class="nav-text">编码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#饿汉式"><span class="nav-number">2.1.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒汉式"><span class="nav-number">2.2.</span> <span class="nav-text">懒汉式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式（Design-Pattern）"><span class="nav-number">1.</span> <span class="nav-text">设计模式（Design Pattern）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">2.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例设计模式"><span class="nav-number">3.</span> <span class="nav-text">单例设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码实现"><span class="nav-number">4.</span> <span class="nav-text">编码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#饿汉式"><span class="nav-number">4.1.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#懒汉式"><span class="nav-number">4.2.</span> <span class="nav-text">懒汉式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类与结果"><span class="nav-number">5.</span> <span class="nav-text">测试类与结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">6.</span> <span class="nav-text">区别</span></a></li></ol></div>
             
 
           </div>

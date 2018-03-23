@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,设计模式," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是模版方法模版方法模式定义了一个操作中的算法骨架，骨架之中定义了一些算法的执行步骤，但是这个框架会将一些步骤延迟到子类中实现，这样一个子类可以不改变算法结构的同时，可以重新定义算法的某些步骤。 生活中的模版银行办理业务在生活中，银行就给客户留下了一个模版。如下面4个步骤，其中1、3、4较为固定，2就留给每一个顾客来具体填写。1.进门取号2.填写单据3.等待叫号4.窗口办理 奥运会开幕式国际奥委">
+<meta name="keywords" content="Java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模版方法设计模式（Template Method）">
+<meta property="og:url" content="http://yoursite.com/2018/03/23/TemplateMethod/index.html">
+<meta property="og:site_name" content="以诺网">
+<meta property="og:description" content="什么是模版方法模版方法模式定义了一个操作中的算法骨架，骨架之中定义了一些算法的执行步骤，但是这个框架会将一些步骤延迟到子类中实现，这样一个子类可以不改变算法结构的同时，可以重新定义算法的某些步骤。 生活中的模版银行办理业务在生活中，银行就给客户留下了一个模版。如下面4个步骤，其中1、3、4较为固定，2就留给每一个顾客来具体填写。1.进门取号2.填写单据3.等待叫号4.窗口办理 奥运会开幕式国际奥委">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-23T15:45:22.680Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模版方法设计模式（Template Method）">
+<meta name="twitter:description" content="什么是模版方法模版方法模式定义了一个操作中的算法骨架，骨架之中定义了一些算法的执行步骤，但是这个框架会将一些步骤延迟到子类中实现，这样一个子类可以不改变算法结构的同时，可以重新定义算法的某些步骤。 生活中的模版银行办理业务在生活中，银行就给客户留下了一个模版。如下面4个步骤，其中1、3、4较为固定，2就留给每一个顾客来具体填写。1.进门取号2.填写单据3.等待叫号4.窗口办理 奥运会开幕式国际奥委">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/23/TemplateMethod/"/>
+
+
+
+
+
+  <title>模版方法设计模式（Template Method） | 以诺网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">以诺网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/23/TemplateMethod/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enoch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以诺网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">模版方法设计模式（Template Method）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-23T20:49:26+08:00">
+                2018-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="什么是模版方法"><a href="#什么是模版方法" class="headerlink" title="什么是模版方法"></a>什么是模版方法</h1><p>模版方法模式定义了一个操作中的算法骨架，骨架之中定义了一些算法的执行步骤，但是这个框架会将一些步骤延迟到子类中实现，这样一个子类可以不改变算法结构的同时，可以重新定义算法的某些步骤。</p>
+<h2 id="生活中的模版"><a href="#生活中的模版" class="headerlink" title="生活中的模版"></a>生活中的模版</h2><h3 id="银行办理业务"><a href="#银行办理业务" class="headerlink" title="银行办理业务"></a>银行办理业务</h3><p>在生活中，银行就给客户留下了一个模版。<br>如下面4个步骤，其中1、3、4较为固定，2就留给每一个顾客来具体填写。<br>1.进门取号<br><em>2.填写单据</em><br>3.等待叫号<br>4.窗口办理</p>
+<h3 id="奥运会开幕式"><a href="#奥运会开幕式" class="headerlink" title="奥运会开幕式"></a>奥运会开幕式</h3><p>国际奥委会为每一个举办国都定下一个举办步骤，但是在其中，3、5可以由举办国自由发挥，这也是模版。<br>1.升国旗奏国歌<br>2.致辞讲话<br><em>3.文艺汇演</em><br>4.入场仪式<br><em>5.点燃奥运圣火</em></p>
+<h2 id="饮料的调制方法"><a href="#饮料的调制方法" class="headerlink" title="饮料的调制方法"></a>饮料的调制方法</h2><p>咖啡和茶的泡制也是一种模版方法，1、4步骤相对固定，而2、3步骤就需要用到不同的方法了。</p>
+<table>
+<thead>
+<tr>
+<th>咖啡的泡法</th>
+<th>茶的泡法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.把水煮沸</td>
+<td>1.把水煮沸</td>
+</tr>
+<tr>
+<td><em>2.用沸水冲泡咖啡</em></td>
+<td><em>2.用沸水浸泡茶叶</em></td>
+</tr>
+<tr>
+<td>3.把咖啡倒进杯子</td>
+<td>3.把茶叶倒进杯子</td>
+</tr>
+<tr>
+<td><em>4.加糖和牛奶</em></td>
+<td><em>4.加柠檬</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="提神饮料的配置"><a href="#提神饮料的配置" class="headerlink" title="提神饮料的配置"></a>提神饮料的配置</h2><p>提神饮料泡法<br>(1)把水煮沸(boilWater)<br>(2)泡饮料(brew)<br>(3)把饮料倒进杯子(pourInCup)<br>(4)加调味料(addCondiments)</p>
+<h1 id="如何实现模版方法模式"><a href="#如何实现模版方法模式" class="headerlink" title="如何实现模版方法模式"></a>如何实现模版方法模式</h1><p>实现要素<br>1.准备一个抽象类，将部分逻辑以具体方法的形式实现，然后声明一些抽象方法交由子类实现剩余逻辑。<br>3.用钩子方法给予子类更大的灵活性。<br>3.最后将方法汇总构成一个不可改变的模版方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 抽象基类，为所有子类提供一个算法框架</span><br><span class="line"> * 提神饮料</span><br><span class="line"> */</span><br><span class="line">public abstract class RefreshBeverage &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * 制备饮料的模版方法</span><br><span class="line">	 * 封装了所有子类共同遵循的算法框架</span><br><span class="line">	 * 把模版方法定义为 final,模版方法设计模式需要训训一个原则：</span><br><span class="line">	 * 子类可以替换掉父类中的可变逻辑，但不能改变整体结构</span><br><span class="line">	 */</span><br><span class="line">	public final void prepareBeverageTemplate()&#123;</span><br><span class="line">		//1.将水煮沸</span><br><span class="line">		boilWater();</span><br><span class="line">		//2.炮制饮料</span><br><span class="line">		brew();</span><br><span class="line">		//3.将饮料倒进杯子</span><br><span class="line">		pourInCup();</span><br><span class="line">		//子类重写钩子方法，决定是否假如调味料</span><br><span class="line">		if(isCustomerWantsCondiments())&#123;</span><br><span class="line">			//4.加入调味料</span><br><span class="line">			addCondiments();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 钩子函数，提供一个默认或空的实现</span><br><span class="line">	 * 具体子类可以自行决定是否挂钩或如何挂钩</span><br><span class="line">	 * 询问用户是否假如调料</span><br><span class="line">	 * 为什么用protected修饰？</span><br><span class="line">	 * 因为遵循了最小访问权限原则，非继承关系的类没必要访问这个方法</span><br><span class="line">	 */</span><br><span class="line">	protected boolean isCustomerWantsCondiments() &#123;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//基本方法，将水煮沸</span><br><span class="line">	private void boilWater() &#123;</span><br><span class="line">		System.out.println(&quot;将水煮沸&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//抽象的基本方法，泡制饮料</span><br><span class="line">	protected abstract void brew();</span><br><span class="line">	</span><br><span class="line">	//基本方法，将饮料倒进杯子</span><br><span class="line">	private void pourInCup() &#123;</span><br><span class="line">		System.out.println(&quot;把饮料倒进杯子&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//抽象的基本方法，加入调味料</span><br><span class="line">	protected abstract void addCondiments();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 具体子类，提供了咖啡制备的具体实现</span><br><span class="line"> */</span><br><span class="line">public class Coffer extends RefreshBeverage&#123;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	protected void brew() &#123;</span><br><span class="line">		System.out.println(&quot;用沸水冲泡咖啡&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	protected void addCondiments() &#123;</span><br><span class="line">		System.out.println(&quot;加入牛奶和糖&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 具体子类，提供了制备茶的具体实现</span><br><span class="line"> */</span><br><span class="line">public class Tea extends RefreshBeverage &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	protected void brew() &#123;</span><br><span class="line">		System.out.println(&quot;用80度的水浸泡茶叶茶5分钟&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	protected void addCondiments() &#123;</span><br><span class="line">		System.out.println(&quot;加入柠檬&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//子类通过覆盖的形式选择挂在钩子函数</span><br><span class="line">	@Override</span><br><span class="line">	protected boolean isCustomerWantsCondiments() &#123;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 测试类</span><br><span class="line"> */</span><br><span class="line">public class RefreshBeverageTest &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		System.out.println(&quot;制备咖啡...&quot;);</span><br><span class="line">		RefreshBeverage rb1 = new Coffer();</span><br><span class="line">		rb1.prepareBeverageTemplate();</span><br><span class="line">		System.out.println(&quot;咖啡好了！&quot;);</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;****************&quot;);</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;制备茶...&quot;);</span><br><span class="line">		RefreshBeverage rb2 = new Tea();</span><br><span class="line">		rb2.prepareBeverageTemplate();</span><br><span class="line">		System.out.println(&quot;茶好了！&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果</p>
+<pre><code>制备咖啡...
+将水煮沸
+用沸水冲泡咖啡
+把饮料倒进杯子
+加入牛奶和糖
+咖啡好了！
+****************
+制备茶...
+将水煮沸
+用80度的水浸泡茶叶茶5分钟
+把饮料倒进杯子
+茶好了！
+</code></pre><h1 id="模版方法模式的特点"><a href="#模版方法模式的特点" class="headerlink" title="模版方法模式的特点"></a>模版方法模式的特点</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>1.封装性好<br>2.复用性好<br>3.屏蔽细节<br>4.便于维护</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>继承，由于Java中是单继承，当使用了模版方法设计模式之后，就不能继承其他类了<br>如果是重构的项目，很难处理父子类之间的关系</p>
+<h1 id="模版方法模式在项目中的应用"><a href="#模版方法模式在项目中的应用" class="headerlink" title="模版方法模式在项目中的应用"></a>模版方法模式在项目中的应用</h1><p>适用场景<br>1.算法或操作遵循相似的逻辑<br>2.重构时（把相同的代码抽取到父类中）<br>3.重要、复杂的算法，核心算法设计为模版算法</p>
+<h1 id="行业案例"><a href="#行业案例" class="headerlink" title="行业案例"></a>行业案例</h1><p>在电信运营商运营的过程中，会出现种类繁多数量巨大的日志，这时候就可以运用到模版方法设计模式。<br>首先，抽取共性，在获得规律<br>1.获得文件<br>2.打开文件<br>3.读取日志结构<br><em>4.处理单行日志</em><br>5.清理工作<br>我们可以发现，不管是什么样的日志，都只有第4步不同，这就可以运用模版设计模式，在在其中添加一些钩子函数，就可以更灵活的运用。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/23/RedisStudy/" rel="next" title="Redis学习笔记">
+                <i class="fa fa-chevron-left"></i> Redis学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Enoch</p>
+              <p class="site-description motion-element" itemprop="description">爱是永不止息</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是模版方法"><span class="nav-number">1.</span> <span class="nav-text">什么是模版方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#生活中的模版"><span class="nav-number">1.1.</span> <span class="nav-text">生活中的模版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#银行办理业务"><span class="nav-number">1.1.1.</span> <span class="nav-text">银行办理业务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#奥运会开幕式"><span class="nav-number">1.1.2.</span> <span class="nav-text">奥运会开幕式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#饮料的调制方法"><span class="nav-number">1.2.</span> <span class="nav-text">饮料的调制方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提神饮料的配置"><span class="nav-number">1.3.</span> <span class="nav-text">提神饮料的配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现模版方法模式"><span class="nav-number">2.</span> <span class="nav-text">如何实现模版方法模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模版方法模式的特点"><span class="nav-number">3.</span> <span class="nav-text">模版方法模式的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模版方法模式在项目中的应用"><span class="nav-number">4.</span> <span class="nav-text">模版方法模式在项目中的应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#行业案例"><span class="nav-number">5.</span> <span class="nav-text">行业案例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enoch</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
