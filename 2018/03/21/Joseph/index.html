@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="以诺网">
 <meta property="og:description" content="背后的故事Josephus有过的故事：39 个犹太人与Josephus及他的朋友躲到一个洞中，39个犹太人决定宁愿死也不要被敌人抓。于是决定了自杀方式，41个人排成一个圆圈，由第1个人开始报数，每报数到第3人该人就必须自杀。然后下一个重新报数，直到所有人都自杀身亡为止。然而Josephus 和他的朋友并不想遵从，Josephus要他的朋友先假装遵从，他将朋友与自己安排在第16个与第31个位置，于是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-21T13:50:50.834Z">
+<meta property="og:updated_time" content="2018-03-27T15:01:31.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="约瑟夫环">
 <meta name="twitter:description" content="背后的故事Josephus有过的故事：39 个犹太人与Josephus及他的朋友躲到一个洞中，39个犹太人决定宁愿死也不要被敌人抓。于是决定了自杀方式，41个人排成一个圆圈，由第1个人开始报数，每报数到第3人该人就必须自杀。然后下一个重新报数，直到所有人都自杀身亡为止。然而Josephus 和他的朋友并不想遵从，Josephus要他的朋友先假装遵从，他将朋友与自己安排在第16个与第31个位置，于是">
@@ -379,7 +379,7 @@
 
       
         <h2 id="背后的故事"><a href="#背后的故事" class="headerlink" title="背后的故事"></a>背后的故事</h2><p>Josephus有过的故事：39 个犹太人与Josephus及他的朋友躲到一个洞中，39个犹太人决定宁愿死也不要被敌人抓。于是决定了自杀方式，41个人排成一个圆圈，由第1个人开始报数，每报数到第3人该人就必须自杀。然后下一个重新报数，直到所有人都自杀身亡为止。然而Josephus 和他的朋友并不想遵从，Josephus要他的朋友先假装遵从，他将朋友与自己安排在第16个与第31个位置，于是逃过了这场死亡游戏。</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>约瑟夫环问题，N个人围城一圈，第一个人从1开始报数，一直报数到第M个人，第M个人出队，下一个人继续从1开始报数，直到剩下最后一人。这个问题可以用链表来实现，具体代码如下</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>约瑟夫环问题，N个人围成一圈，第一个人从1开始报数，一直报数到第M个人，第M个人出队，下一个人继续从1开始报数，直到剩下最后一人。这个问题可以用链表来实现，具体代码如下</p>
 <h2 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">package site.enoch.joseph;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 约瑟夫环问题</span><br><span class="line"> */</span><br><span class="line">public class Joseph &#123;</span><br><span class="line">	private int N = 20;//总人数</span><br><span class="line">	private int M = 5;//数到第M个，出队</span><br><span class="line">	</span><br><span class="line">	class Node&#123;</span><br><span class="line">		int val; //下标</span><br><span class="line">		Node next; //存储链表下一个节点</span><br><span class="line">		public Node(int val)&#123;</span><br><span class="line">			this.val = val;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void outNode()&#123;</span><br><span class="line">		Node header = new Node(1);//第一个节点</span><br><span class="line">		Node x = header; //目前被点到的节点</span><br><span class="line">		for(int i=2; i&lt;=N; i++)&#123; //为第i个人创建节点</span><br><span class="line">			x = (x.next = new Node(i));</span><br><span class="line">		&#125;</span><br><span class="line">		x.next = header; //头尾相连</span><br><span class="line">		System.out.println(&quot;开始出队：&quot;);</span><br><span class="line">		while(x != x.next)&#123;//队列还有两人以上</span><br><span class="line">			for(int i=1; i&lt;M; i++)&#123;</span><br><span class="line">				//第一次 为  x = 尾节点.next，x变为头结点（第一个节点）  </span><br><span class="line">				x = x.next;</span><br><span class="line">			&#125;</span><br><span class="line">			//假如M为5，循环结束，x为4，x.next即为要出列的</span><br><span class="line">			System.out.println(&quot;出队的编号为：&quot; + x.next.val);</span><br><span class="line">			x.next = x.next.next;//这样就删除了一个节点</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;最后剩余的人编号为：&quot; + x.val);</span><br><span class="line">	&#125;	</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Joseph joseph = new Joseph();</span><br><span class="line">		joseph.outNode();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><pre><code>开始出队：
 出队的编号为：5
@@ -525,7 +525,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -536,7 +536,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -547,7 +547,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

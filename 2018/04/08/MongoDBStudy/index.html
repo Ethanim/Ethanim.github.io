@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据库,NoSQL,MongoDB," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="MongoDB简介MongoDB 是一个基于分布式文件存储的数据库。MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。 MongoDB 的特点 支持查询与索引 存储结构灵活，适应多变的数据 运行速度更快相比 MySQL、Oracle 存储的数据更多MySQL数据库存储的数据量：1000 万以内，数据库性能都可以，上亿条则数据库性能有降低O">
+<meta name="keywords" content="数据库,NoSQL,MongoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/04/08/MongoDBStudy/index.html">
+<meta property="og:site_name" content="以诺网">
+<meta property="og:description" content="MongoDB简介MongoDB 是一个基于分布式文件存储的数据库。MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。 MongoDB 的特点 支持查询与索引 存储结构灵活，适应多变的数据 运行速度更快相比 MySQL、Oracle 存储的数据更多MySQL数据库存储的数据量：1000 万以内，数据库性能都可以，上亿条则数据库性能有降低O">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/MongoDB2.png">
+<meta property="og:image" content="http://yoursite.com/img/MongoDB3.png">
+<meta property="og:updated_time" content="2018-04-08T14:44:25.308Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB学习笔记">
+<meta name="twitter:description" content="MongoDB简介MongoDB 是一个基于分布式文件存储的数据库。MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。 MongoDB 的特点 支持查询与索引 存储结构灵活，适应多变的数据 运行速度更快相比 MySQL、Oracle 存储的数据更多MySQL数据库存储的数据量：1000 万以内，数据库性能都可以，上亿条则数据库性能有降低O">
+<meta name="twitter:image" content="http://yoursite.com/img/MongoDB2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/08/MongoDBStudy/"/>
+
+
+
+
+
+  <title>MongoDB学习笔记 | 以诺网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">以诺网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/08/MongoDBStudy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enoch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以诺网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T20:18:17+08:00">
+                2018-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MongoDB/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDB</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="MongoDB简介"><a href="#MongoDB简介" class="headerlink" title="MongoDB简介"></a>MongoDB简介</h2><p>MongoDB 是一个基于分布式文件存储的数据库。<br>MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。</p>
+<h2 id="MongoDB-的特点"><a href="#MongoDB-的特点" class="headerlink" title="MongoDB 的特点"></a>MongoDB 的特点</h2><ul>
+<li>支持查询与索引</li>
+<li>存储结构灵活，适应多变的数据</li>
+<li>运行速度更快<br>相比 MySQL、Oracle</li>
+<li>存储的数据更多<br>MySQL数据库存储的数据量：1000 万以内，数据库性能都可以，上亿条则数据库性能有降低<br>Oracle：几亿—-几十亿 ，数据库性能有保障<br>MongoDB 单表存储的数据可以是 PB 级的</li>
+</ul>
+<h2 id="MongoDB-适合存储的信息"><a href="#MongoDB-适合存储的信息" class="headerlink" title="MongoDB 适合存储的信息"></a>MongoDB 适合存储的信息</h2><p>适合存储“大数据量、低价值”的数据<br>例如：<br>商品的评论信息<br>微博系统的 点赞、帖子回复 等等信息</p>
+<h2 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h2><p>1.下载地址 <a href="https://www.mongodb.com/download-center" target="_blank" rel="noopener">https://www.mongodb.com/download-center</a><br>2.解压后，bin 目录下 <code>mongod.exe</code> 服务器端，<code>mongo.exe</code> 客户端<br>3.配置环境变量 D:\learn\mongodb\bin<br>4.创建 data 与 logs 文件夹用户存储数据与日志文件<br>5.在 bin 目录下执行如下语句，安装服务，<code>--dbpath</code>指定文件存储目录，<code>--logpath</code>指定日志存储位置</p>
+<pre><code>D:\learn\mongodb\bin\mongod.exe --dbpath D:\learn\mongodb\d
+ata --logpath D:\learn\mongodb\logs\db.log --install
+</code></pre><p>6.在服务中可以看到安装成功，并启动服务<br><img src="/img/MongoDB2.png" alt=""></p>
+<p>7.如下图，执行 <code>mongo.exe</code> 可以看到启动成功与对应信息，端口号：<code>27017</code><br><img src="/img/MongoDB3.png" alt=""></p>
+<h2 id="MongoDB-基本操作"><a href="#MongoDB-基本操作" class="headerlink" title="MongoDB 基本操作"></a>MongoDB 基本操作</h2><p>MySQL 与 MongoDB 基本概念对应</p>
+<table>
+<thead>
+<tr>
+<th>MySQL</th>
+<th>MongoDB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据库(database)</td>
+<td>数据库(database)</td>
+</tr>
+<tr>
+<td>表(table)</td>
+<td>集合(collection)</td>
+</tr>
+<tr>
+<td>记录</td>
+<td>文档</td>
+</tr>
+</tbody>
+</table>
+<h3 id="库操作"><a href="#库操作" class="headerlink" title="库操作"></a>库操作</h3><p><code>show databases</code> //查看有哪些库</p>
+<pre><code>MongoDB Enterprise &gt; show databases
+admin  0.000GB
+local  0.000GB
+</code></pre><p><code>use databaseName</code> //创建一个库进入或直接进入库，库里没有集合，则 <code>show databases</code> 不显示</p>
+<pre><code>MongoDB Enterprise &gt; use javaDB
+switched to db javaDB
+</code></pre><p><code>db.dropDatabase()</code> //删除当前库</p>
+<pre><code>MongoDB Enterprise &gt; db.dropDatabase()
+{ &quot;ok&quot; : 1 }
+</code></pre><h3 id="添加操作"><a href="#添加操作" class="headerlink" title="添加操作"></a>添加操作</h3><p><code>db.collectionName.insert(json字符串)</code> //添加 json 数据到 collectionName 集合，第一次添加自动创建该集合</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.insert({&quot;no&quot;:1,&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:18,&quot;deptNo&quot;:10})
+WriteResult({ &quot;nInserted&quot; : 1 })
+MongoDB Enterprise &gt; db.emp.insert({&quot;no&quot;:2,&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:20,&quot;deptNo&quot;:20})
+WriteResult({ &quot;nInserted&quot; : 1 })
+</code></pre><p>MongoDB 内置了 JavaScript 引擎，可以通过 JavaScript 代码来批量插入</p>
+<pre><code>MongoDB Enterprise &gt; for(var i=1; i&lt;=100; i++){
+... db.emp.insert({&quot;no&quot;:i,&quot;name&quot;:&quot;bob&quot;+i,&quot;age&quot;:18,&quot;deptNo&quot;:20+i});
+... };
+WriteResult({ &quot;nInserted&quot; : 1 })
+</code></pre><h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><p><code>db.collectionName.find()</code> //查询所有，_id 为自动生成的唯一 id<br><code>db.collectionName.findOne()</code> //db.collectionName.findOne() //查询第一条数据</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.find()
+{ &quot;_id&quot; : ObjectId(&quot;5aca1a45b12b5b0373b45bf8&quot;), &quot;no&quot; : 1, &quot;name&quot; : &quot;tom&quot;, &quot;age&quot;
+: 18, &quot;deptNo&quot; : 10 }
+{ &quot;_id&quot; : ObjectId(&quot;5aca1a53b12b5b0373b45bf9&quot;), &quot;no&quot; : 2, &quot;name&quot; : &quot;jack&quot;, &quot;age&quot;
+ : 20, &quot;deptNo&quot; : 20 }
+</code></pre><p><code>db.collectionName.find(json字符串)</code> //按条件查询</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.find({&quot;no&quot;:1})
+{ &quot;_id&quot; : ObjectId(&quot;5aca1a45b12b5b0373b45bf8&quot;), &quot;no&quot; : 1, &quot;name&quot; : &quot;tom&quot;, &quot;age&quot;
+: 18, &quot;deptNo&quot; : 10 }
+</code></pre><p>非等值查询关键字：”$gt”，大于，”$gte”，大于等于，”$lt”，小于，”$lte”，小于等于，”$ne”，不等于<br><code>db.emp.find({&quot;no&quot;:{$gt:98}})</code> //查询no&gt;98的</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.find({&quot;no&quot;:{$gt:98}}))
+{ &quot;_id&quot; : ObjectId(&quot;5aca1eb4b12b5b0373b45c5c&quot;), &quot;no&quot; : 99, &quot;name&quot; : &quot;bob99&quot;, &quot;ag
+e&quot; : 18, &quot;deptNo&quot; : 119 }
+{ &quot;_id&quot; : ObjectId(&quot;5aca1eb4b12b5b0373b45c5d&quot;), &quot;no&quot; : 100, &quot;name&quot; : &quot;bob100&quot;, &quot;
+age&quot; : 18, &quot;deptNo&quot; : 120 }
+</code></pre><p>支持正则表达式查询<br><code>db.emp.find({&quot;name&quot;:/bob9/})</code> //查询 name 包含 bob9 的记录</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.find({&quot;name&quot;:/bob9/})
+{ &quot;_id&quot; : ObjectId(&quot;5aca1eb4b12b5b0373b45c02&quot;), &quot;no&quot; : 9, &quot;name&quot; : &quot;bob9&quot;, &quot;age&quot;
+ : 18, &quot;deptNo&quot; : 29 }
+{ &quot;_id&quot; : ObjectId(&quot;5aca1eb4b12b5b0373b45c53&quot;), &quot;no&quot; : 90, &quot;name&quot; : &quot;bob90&quot;, &quot;ag
+e&quot; : 18, &quot;deptNo&quot; : 110 }
+{ &quot;_id&quot; : ObjectId(&quot;5aca1eb4b12b5b0373b45c54&quot;), &quot;no&quot; : 91, &quot;name&quot; : &quot;bob91&quot;, &quot;ag
+e&quot; : 18, &quot;deptNo&quot; : 111 }
+</code></pre><h3 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作"></a>更新操作</h3><p><code>db.collectionName.update(条件,更新值)</code> //全部更新</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.insert({&quot;no&quot;:1,&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:20})
+WriteResult({ &quot;nInserted&quot; : 1 })
+MongoDB Enterprise &gt; db.emp.update({&quot;no&quot;:1},{&quot;name&quot;:&quot;jack&quot;});
+WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+MongoDB Enterprise &gt; db.emp.find()
+{ &quot;_id&quot; : ObjectId(&quot;5aca2265b12b5b0373b45c5f&quot;), &quot;name&quot; : &quot;jack&quot; }
+</code></pre><p>先清空表(命令在后面介绍)，添加一条数据，修改后，会发现值只剩修改后的值了，这是因为默认是全部更新<br>有时候我们仅仅需要更新一个字段，而不是整体更新，那么就可以利用 MongoDB 中提供的修改器<br>$inc 修改器，自增 $inc 指定的值，如果没有此 key，则会创建 key<br>$set 修改器，指定更新的字段与对应的值</p>
+<p><code>db.collectionName.update(条件,{$set:更新值})</code> //局部更新</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.insert({&quot;no&quot;:1,&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:20})
+WriteResult({ &quot;nInserted&quot; : 1 })
+MongoDB Enterprise &gt; db.emp.update({&quot;no&quot;:1},{$set:{&quot;name&quot;:&quot;tom&quot;}})
+WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 0 })
+MongoDB Enterprise &gt; db.emp.find()
+{ &quot;_id&quot; : ObjectId(&quot;5aca2587b12b5b0373b45c64&quot;), &quot;no&quot; : 1, &quot;name&quot; : &quot;tom&quot;, &quot;age&quot;
+: 20 }
+</code></pre><p>如果查询条件没有，则可以通过设置第三个参数为 true，来插入数据</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.update({&quot;id&quot;:100},{&quot;name&quot;:&quot;tom&quot;},true)
+WriteResult({
+        &quot;nMatched&quot; : 0,
+        &quot;nUpserted&quot; : 1,
+        &quot;nModified&quot; : 0,
+        &quot;_id&quot; : ObjectId(&quot;5aca28f817a8cf394053a115&quot;)
+})
+</code></pre><p>在 MongoDB 中如果匹配多条，默认至修改第一条，如需批量修改，把第四个参数指定为 true 即可，就不举例了。</p>
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><p><code>db.collectionName.remove({})</code> //删除所有记录<br><code>db.collectionName.remove(json字符串)</code> //删除指定条件记录</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.remove({});
+WriteResult({ &quot;nRemoved&quot; : 1 })
+</code></pre><h3 id="其它操作"><a href="#其它操作" class="headerlink" title="其它操作"></a>其它操作</h3><p>统计数量<br><code>db.collectionName.count()</code> //统计该集合的文档数量<br><code>db.collectionName.count(json字符串)</code> //按指定条件统计数量</p>
+<pre><code>MongoDB Enterprise &gt; db.emp.count();
+3
+</code></pre><p>删除集合<br><code>db.collectionName.drop()</code></p>
+<pre><code>MongoDB Enterprise &gt; db.emp.drop();
+true
+</code></pre><p>查看有哪些集合<br><code>show collections</code></p>
+<p>客户端提供了一套帮助系统，通过帮助就可以完成很多任务<br>系统级别：<code>help</code><br>数据库级别：<code>db.help()</code><br>集合级别：<code>db.collectionName.help()</code><br>方法级别：查看一个方法有几个参数：<code>db.collectionName.funName</code>，如:<code>db.emp.find</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+            <a href="/tags/NoSQL/" rel="tag"># NoSQL</a>
+          
+            <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/24/Proxy/" rel="next" title="代理设计模式（Proxy）">
+                <i class="fa fa-chevron-left"></i> 代理设计模式（Proxy）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Enoch</p>
+              <p class="site-description motion-element" itemprop="description">爱是永不止息</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB简介"><span class="nav-number">1.</span> <span class="nav-text">MongoDB简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB-的特点"><span class="nav-number">2.</span> <span class="nav-text">MongoDB 的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB-适合存储的信息"><span class="nav-number">3.</span> <span class="nav-text">MongoDB 适合存储的信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载与安装"><span class="nav-number">4.</span> <span class="nav-text">下载与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB-基本操作"><span class="nav-number">5.</span> <span class="nav-text">MongoDB 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#库操作"><span class="nav-number">5.1.</span> <span class="nav-text">库操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加操作"><span class="nav-number">5.2.</span> <span class="nav-text">添加操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询操作"><span class="nav-number">5.3.</span> <span class="nav-text">查询操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新操作"><span class="nav-number">5.4.</span> <span class="nav-text">更新操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除操作"><span class="nav-number">5.5.</span> <span class="nav-text">删除操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它操作"><span class="nav-number">5.6.</span> <span class="nav-text">其它操作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enoch</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
