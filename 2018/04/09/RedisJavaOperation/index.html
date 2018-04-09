@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,数据库,NoSQL,SpringBoot,Redis," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Redis 基础：http://www.enoch.site/2018/03/23/RedisStudy项目代码：https://github.com/Ethanim/StudyRedisMongoDB  Java 中的原生操作创建项目创建 Dynamic Web Project 项目，粘贴 commons-pool2-2.4.2.jar、jedis-2.9.0.jar 包到 lib 下 创建实">
+<meta name="keywords" content="Java,数据库,NoSQL,SpringBoot,Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reids 结合 Java 与 SpringBoot 操作">
+<meta property="og:url" content="http://yoursite.com/2018/04/09/RedisJavaOperation/index.html">
+<meta property="og:site_name" content="以诺网">
+<meta property="og:description" content="Redis 基础：http://www.enoch.site/2018/03/23/RedisStudy项目代码：https://github.com/Ethanim/StudyRedisMongoDB  Java 中的原生操作创建项目创建 Dynamic Web Project 项目，粘贴 commons-pool2-2.4.2.jar、jedis-2.9.0.jar 包到 lib 下 创建实">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/RedisJavaOperation1.png">
+<meta property="og:image" content="http://yoursite.com/img/RedisJavaOperation2.png">
+<meta property="og:image" content="http://yoursite.com/img/RedisJavaOperation3.png">
+<meta property="og:updated_time" content="2018-04-09T13:06:07.911Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reids 结合 Java 与 SpringBoot 操作">
+<meta name="twitter:description" content="Redis 基础：http://www.enoch.site/2018/03/23/RedisStudy项目代码：https://github.com/Ethanim/StudyRedisMongoDB  Java 中的原生操作创建项目创建 Dynamic Web Project 项目，粘贴 commons-pool2-2.4.2.jar、jedis-2.9.0.jar 包到 lib 下 创建实">
+<meta name="twitter:image" content="http://yoursite.com/img/RedisJavaOperation1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/09/RedisJavaOperation/"/>
+
+
+
+
+
+  <title>Reids 结合 Java 与 SpringBoot 操作 | 以诺网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">以诺网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/09/RedisJavaOperation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enoch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以诺网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Reids 结合 Java 与 SpringBoot 操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T20:16:47+08:00">
+                2018-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Redis 基础：<a href="http://www.enoch.site/2018/03/23/RedisStudy" target="_blank" rel="noopener">http://www.enoch.site/2018/03/23/RedisStudy</a><br>项目代码：<a href="https://github.com/Ethanim/StudyRedisMongoDB" target="_blank" rel="noopener">https://github.com/Ethanim/StudyRedisMongoDB</a></p>
+</blockquote>
+<h2 id="Java-中的原生操作"><a href="#Java-中的原生操作" class="headerlink" title="Java 中的原生操作"></a>Java 中的原生操作</h2><h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>创建 Dynamic Web Project 项目，粘贴 commons-pool2-2.4.2.jar、jedis-2.9.0.jar 包到 lib 下</p>
+<h3 id="创建实体类"><a href="#创建实体类" class="headerlink" title="创建实体类"></a>创建实体类</h3><p>创建 Dept 实体类，实现序列化接口，因为要序列化存储到 Redis 中</p>
+<pre><code>public class Dept implements Serializable{
+    private static final long serialVersionUID = 1L;        
+    private int deptno;
+    private String dname;
+    //省略无参、有参构造方法，get、set 方法。
+｝
+</code></pre><h3 id="创建序列化工具类"><a href="#创建序列化工具类" class="headerlink" title="创建序列化工具类"></a>创建序列化工具类</h3><p>创建序列化工具类，其中有两个方法，一个序列化方法，一个反序列化方法，具体如下</p>
+<pre><code>public class SerializableUtil {
+    /**
+     * 序列化方法
+     * @param obj 要序列化的对象
+     * @return 字节数组
+     * @throws IOException
+     */
+    public static byte[] toSerializable(Object obj) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject(obj);
+        byte[] bytes = baos.toByteArray();
+        oos.close();
+        baos.close();
+        return bytes;
+    }
+
+    /**
+     * 反序列化方法
+     * @param bytes 字节数组
+     * @return 对象
+     * @throws Exception
+     */
+    public static Object toObject(byte[] bytes) throws Exception {
+        ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+        ObjectInputStream ois = new ObjectInputStream(bais);
+        Object obj = ois.readObject();
+        ois.close();
+        bais.close();
+        return obj;
+    }
+}
+</code></pre><h3 id="创建测试类"><a href="#创建测试类" class="headerlink" title="创建测试类"></a>创建测试类</h3><h4 id="测试连接"><a href="#测试连接" class="headerlink" title="测试连接"></a>测试连接</h4><p>打印 PONG 说明连接成功</p>
+<pre><code>//连接测试
+@Test
+public void ConnectionTest() {
+    Jedis jedis = new Jedis();//连接本机默认端口，可省略链接地址与主机
+    System.out.println(jedis.ping());
+    jedis.close();
+}
+</code></pre><h4 id="查询所有"><a href="#查询所有" class="headerlink" title="查询所有"></a>查询所有</h4><pre><code>//查询所有
+@Test
+public void selectAll() {
+    Jedis jedis = new Jedis();
+    Set&lt;String&gt; keys = jedis.keys(&quot;*&quot;);// keys *
+    for(String s : keys)
+        System.out.println(s);
+    jedis.close();
+}
+</code></pre><h4 id="设置数据"><a href="#设置数据" class="headerlink" title="设置数据"></a>设置数据</h4><pre><code>//设置并获取数据
+@Test
+public void setData() {
+    Jedis jedis = new Jedis();
+    jedis.set(&quot;name&quot;, &quot;tom&quot;);//set name tom
+    String name = jedis.get(&quot;name&quot;);// get name
+    System.out.println(name);
+    jedis.close();
+}
+</code></pre><h4 id="设置队列"><a href="#设置队列" class="headerlink" title="设置队列"></a>设置队列</h4><pre><code>//设置并获取队列
+@Test
+public void setList() {
+    Jedis jedis = new Jedis(&quot;localhost&quot;, 6379);
+    jedis.lpush(&quot;mylist&quot;, &quot;a b c d e f&quot;);//lpush mylist a b c d e f
+    List&lt;String&gt; mylist = jedis.lrange(&quot;mylist&quot;, 0, -1);//lrange mylist 0 -1
+    System.out.println(mylist);
+    jedis.close();
+}
+</code></pre><h4 id="设置集合"><a href="#设置集合" class="headerlink" title="设置集合"></a>设置集合</h4><pre><code>//设置并获取 set 集合
+@Test
+public void setSet() {
+    Jedis jedis = new Jedis(&quot;localhost&quot;, 6379);
+    jedis.hset(&quot;myset&quot;,&quot;tom&quot;,&quot;1&quot;);//hset myset tom 1
+    jedis.hset(&quot;myset&quot;,&quot;jack&quot;,&quot;2&quot;);//hset myset jack 2
+    jedis.hset(&quot;myset&quot;,&quot;rose&quot;,&quot;3&quot;);//hset myset rose 3
+    List&lt;String&gt; lists = jedis.hmget(&quot;myset&quot;, &quot;tom&quot;, &quot;jack&quot;, &quot;rose&quot;);// hmget myset tom jack rose
+    for(String s : lists)
+        System.out.println(s);
+    jedis.close();
+}
+</code></pre><h4 id="设置对象"><a href="#设置对象" class="headerlink" title="设置对象"></a>设置对象</h4><pre><code>//设置 Dept 对象
+@Test
+public void setDept() throws IOException {
+    Jedis jedis = new Jedis();
+    Dept dept = new Dept(15,&quot;小白&quot;);//创建对象
+    jedis.set(&quot;dept&quot;.getBytes(), SerializableUtil.toSerializable(dept));//把序列化后的对象存到 redis 中
+    jedis.close();
+}
+</code></pre><p>通过客户端命令查看，已经序列化存储到服务器</p>
+<p><img src="/img/RedisJavaOperation1.png" alt=""></p>
+<h4 id="获取对象"><a href="#获取对象" class="headerlink" title="获取对象"></a>获取对象</h4><pre><code>//获取 Dept 对象并打印
+@Test
+public void getDept() throws Exception {
+    Jedis jedis = new Jedis();
+    byte[] bytes = jedis.get(&quot;dept&quot;.getBytes());
+    Dept dept = (Dept)SerializableUtil.toObject(bytes);//把序列化后的对象转换回来
+    System.out.println(dept);
+    jedis.close();
+}
+</code></pre><p>测试结果</p>
+<pre><code>Dept [deptno=15, dname=小白]
+</code></pre><h2 id="SpringBoot-中操作-Redis"><a href="#SpringBoot-中操作-Redis" class="headerlink" title="SpringBoot 中操作 Redis"></a>SpringBoot 中操作 Redis</h2><h3 id="创建项目-1"><a href="#创建项目-1" class="headerlink" title="创建项目"></a>创建项目</h3><p> 创建 maven 项目，引入对应 jar 包，配置 pom.xml，具体如下</p>
+<pre><code>&lt;!-- SpringBoot 基础包 --&gt;
+&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.4.7.RELEASE&lt;/version&gt;
+&lt;/parent&gt;
+
+&lt;dependencies&gt;
+    &lt;!-- 启动ioc，组建扫描，自动配置 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;!-- 启用redis --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-redis&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre><h3 id="配置连接信息"><a href="#配置连接信息" class="headerlink" title="配置连接信息"></a>配置连接信息</h3><p>在 application.properties 里配置 Redis 连接主机与端口号</p>
+<pre><code>spring.redis.host=localhost
+spring.redis.port=6379
+</code></pre><h3 id="配置主启动类"><a href="#配置主启动类" class="headerlink" title="配置主启动类"></a>配置主启动类</h3><pre><code>@SpringBootApplication
+public class MyBootApplication {
+
+}
+</code></pre><h3 id="创建实体类-1"><a href="#创建实体类-1" class="headerlink" title="创建实体类"></a>创建实体类</h3><pre><code>public class Dept implements Serializable{
+    private static final long serialVersionUID = 1L;
+    private int deptno;
+    private String dname;
+    //省略无参、有参构造方法，get、set 方法。
+｝
+</code></pre><h3 id="创建测试类-1"><a href="#创建测试类-1" class="headerlink" title="创建测试类"></a>创建测试类</h3><p>SpringBoot 框架会自动配置一个 RedisTemplate 对象，方便操作，可以直接调用对应方法，存取对象，自动完成序列化</p>
+<h4 id="设置对象-1"><a href="#设置对象-1" class="headerlink" title="设置对象"></a>设置对象</h4><pre><code>@Test
+public void setDept() {
+    ApplicationContext ac = SpringApplication.run(MyBootApplication.class);//启动项目
+    RedisTemplate template = ac.getBean(&quot;redisTemplate&quot;,RedisTemplate.class);//获取 RedisTemplate 对象
+    Dept dept = new Dept(10, &quot;Hello SpringBoot&quot;);//创建 Dept 对象
+    template.opsForValue().set(&quot;spring&quot;, dept);//把对象设置到 Redis 服务器里，自动序列化
+}
+</code></pre><p>通过客户端命令可以看到，已经存进去了，并在原有名字上加了一些序列化的字符</p>
+<p><img src="/img/RedisJavaOperation2.png" alt=""></p>
+<p>通过客户端命令获取，可以看到，已经序列化存入</p>
+<p><img src="/img/RedisJavaOperation3.png" alt=""></p>
+<h4 id="获取对象-1"><a href="#获取对象-1" class="headerlink" title="获取对象"></a>获取对象</h4><pre><code>@Test
+public void getDept() {
+    ApplicationContext ac = SpringApplication.run(MyBootApplication.class);
+    RedisTemplate template = ac.getBean(&quot;redisTemplate&quot;,RedisTemplate.class);
+    Dept dept = (Dept)template.opsForValue().get(&quot;spring&quot;);//获取对象，自动反序列化
+    System.out.println(dept);
+}
+</code></pre><p>测试结果</p>
+<pre><code>Dept [deptno=10, dname=Hello SpringBoot]
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+            <a href="/tags/NoSQL/" rel="tag"># NoSQL</a>
+          
+            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/09/MongoDBJavaOperation/" rel="next" title="MongoDB 结合 Java 与 SpringBoot 操作">
+                <i class="fa fa-chevron-left"></i> MongoDB 结合 Java 与 SpringBoot 操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Enoch</p>
+              <p class="site-description motion-element" itemprop="description">爱是永不止息</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-中的原生操作"><span class="nav-number">1.</span> <span class="nav-text">Java 中的原生操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目"><span class="nav-number">1.1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建实体类"><span class="nav-number">1.2.</span> <span class="nav-text">创建实体类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建序列化工具类"><span class="nav-number">1.3.</span> <span class="nav-text">创建序列化工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建测试类"><span class="nav-number">1.4.</span> <span class="nav-text">创建测试类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试连接"><span class="nav-number">1.4.1.</span> <span class="nav-text">测试连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询所有"><span class="nav-number">1.4.2.</span> <span class="nav-text">查询所有</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置数据"><span class="nav-number">1.4.3.</span> <span class="nav-text">设置数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置队列"><span class="nav-number">1.4.4.</span> <span class="nav-text">设置队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置集合"><span class="nav-number">1.4.5.</span> <span class="nav-text">设置集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置对象"><span class="nav-number">1.4.6.</span> <span class="nav-text">设置对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取对象"><span class="nav-number">1.4.7.</span> <span class="nav-text">获取对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot-中操作-Redis"><span class="nav-number">2.</span> <span class="nav-text">SpringBoot 中操作 Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目-1"><span class="nav-number">2.1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置连接信息"><span class="nav-number">2.2.</span> <span class="nav-text">配置连接信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置主启动类"><span class="nav-number">2.3.</span> <span class="nav-text">配置主启动类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建实体类-1"><span class="nav-number">2.4.</span> <span class="nav-text">创建实体类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建测试类-1"><span class="nav-number">2.5.</span> <span class="nav-text">创建测试类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置对象-1"><span class="nav-number">2.5.1.</span> <span class="nav-text">设置对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取对象-1"><span class="nav-number">2.5.2.</span> <span class="nav-text">获取对象</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enoch</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
