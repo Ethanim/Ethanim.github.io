@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,数据库,NoSQL,MongoDB,SpringBoot," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="MongoDB 基础：http://www.enoch.site/2018/04/08/MongoDBStudy项目代码：https://github.com/Ethanim/StudyRedisMongoDB  Java 原生操作 MongoDB1.创建 Dynamic Web Project 项目，粘贴 mongo-java-driver-2.13.2.jar 包到 lib 中2.创建测试类">
+<meta name="keywords" content="Java,数据库,NoSQL,MongoDB,SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB 结合 Java 与 SpringBoot 操作">
+<meta property="og:url" content="http://yoursite.com/2018/04/09/MongoDBJavaOperation/index.html">
+<meta property="og:site_name" content="以诺网">
+<meta property="og:description" content="MongoDB 基础：http://www.enoch.site/2018/04/08/MongoDBStudy项目代码：https://github.com/Ethanim/StudyRedisMongoDB  Java 原生操作 MongoDB1.创建 Dynamic Web Project 项目，粘贴 mongo-java-driver-2.13.2.jar 包到 lib 中2.创建测试类">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/MonoDBJavaOperation1.png">
+<meta property="og:updated_time" content="2018-04-09T11:32:54.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB 结合 Java 与 SpringBoot 操作">
+<meta name="twitter:description" content="MongoDB 基础：http://www.enoch.site/2018/04/08/MongoDBStudy项目代码：https://github.com/Ethanim/StudyRedisMongoDB  Java 原生操作 MongoDB1.创建 Dynamic Web Project 项目，粘贴 mongo-java-driver-2.13.2.jar 包到 lib 中2.创建测试类">
+<meta name="twitter:image" content="http://yoursite.com/img/MonoDBJavaOperation1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/09/MongoDBJavaOperation/"/>
+
+
+
+
+
+  <title>MongoDB 结合 Java 与 SpringBoot 操作 | 以诺网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">以诺网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/09/MongoDBJavaOperation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enoch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以诺网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB 结合 Java 与 SpringBoot 操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T09:43:39+08:00">
+                2018-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MongoDB/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDB</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>MongoDB 基础：<a href="http://www.enoch.site/2018/04/08/MongoDBStudy" target="_blank" rel="noopener">http://www.enoch.site/2018/04/08/MongoDBStudy</a><br>项目代码：<a href="https://github.com/Ethanim/StudyRedisMongoDB" target="_blank" rel="noopener">https://github.com/Ethanim/StudyRedisMongoDB</a></p>
+</blockquote>
+<h2 id="Java-原生操作-MongoDB"><a href="#Java-原生操作-MongoDB" class="headerlink" title="Java 原生操作 MongoDB"></a>Java 原生操作 MongoDB</h2><p>1.创建 Dynamic Web Project 项目，粘贴 mongo-java-driver-2.13.2.jar 包到 lib 中<br>2.创建测试类,具体如下</p>
+<h3 id="获取数据库列表"><a href="#获取数据库列表" class="headerlink" title="获取数据库列表"></a>获取数据库列表</h3><p>相当于命令 <code>show databases</code></p>
+<pre><code>@Test
+public void selectDataBaseNames() throws Exception {
+    MongoClient mongo = new MongoClient(&quot;localhost&quot;, 27017);//创建 MongoClient 对象
+    List&lt;String&gt; databaseNames = mongo.getDatabaseNames();//获取数据库名列表
+    for(String name : databaseNames) //遍历输出
+        System.out.println(&quot;库名:&quot; + name);
+    mongo.close();
+}
+</code></pre><p>测试结果</p>
+<pre><code>库名:admin
+库名:java
+库名:javaDB
+库名:local
+</code></pre><h3 id="添加数据到集合"><a href="#添加数据到集合" class="headerlink" title="添加数据到集合"></a>添加数据到集合</h3><p>相当于命令 <code>db.dept.insert()</code></p>
+<pre><code>@Test
+public void insertDept() throws Exception {
+    MongoClient mongo = new MongoClient();//连接本机和默认端口可以省略
+    DB db = mongo.getDB(&quot;java&quot;); // use java
+    //Set&lt;String&gt; collectionNames = db.getCollectionNames();//获取数据库中集合名字
+    DBCollection dept = db.getCollection(&quot;dept&quot;);// 获取 dept 集合
+    BasicDBObject dbObj = new BasicDBObject(); // 创建 BasicDBOject 对象
+    dbObj.put(&quot;deptno&quot;, 20); //放入数据
+    dbObj.put(&quot;dname&quot;, &quot;行政部&quot;);
+    dbObj.put(&quot;loc&quot;, &quot;北京&quot;);
+    dept.insert(dbObj); //添加进集合 db.dept.insert()
+    mongo.close();
+}
+</code></pre><p>通过 MongoDB 客户端查看结果如下</p>
+<p><img src="/img/MonoDBJavaOperation1.png" alt=""></p>
+<h3 id="查询集合"><a href="#查询集合" class="headerlink" title="查询集合"></a>查询集合</h3><p>下面分别是查询全部<code>db.dept.find()</code><br>和带参查询<code>db.dept.find(json字符串)</code></p>
+<pre><code>@Test
+public void selectDept() throws Exception {
+    MongoClient mongo = new MongoClient();
+    DB db = mongo.getDB(&quot;java&quot;);
+    DBCollection dept = db.getCollection(&quot;dept&quot;);
+    DBCursor cursor = dept.find(); //db.dept.find()
+    while(cursor.hasNext()) {//遍历游标
+        DBObject obj = cursor.next();
+        System.out.println(obj.get(&quot;deptno&quot;) + &quot; &quot; + obj.get(&quot;dname&quot;) + &quot; &quot; + obj.get(&quot;loc&quot;));
+    }
+    System.out.println(&quot;--------------&quot;);
+    BasicDBObject dbObj = new BasicDBObject(); //{&quot;loc&quot;:&quot;北京&quot;}
+    dbObj.put(&quot;loc&quot;, &quot;北京&quot;);
+    DBCursor cursor2 = dept.find(dbObj); //db.dept.find({&quot;loc&quot;:&quot;北京&quot;})
+    while(cursor2.hasNext()) {//遍历游标
+        DBObject obj = cursor2.next();
+        System.out.println(obj.get(&quot;deptno&quot;) + &quot; &quot; + obj.get(&quot;dname&quot;) + &quot; &quot; + obj.get(&quot;loc&quot;));
+    }
+    mongo.close();
+}
+</code></pre><p>测试结果</p>
+<pre><code>20 行政部 北京
+30 财务部 上海
+--------------
+20 行政部 北京
+</code></pre><h3 id="修改集合"><a href="#修改集合" class="headerlink" title="修改集合"></a>修改集合</h3><p>把部门编号为 20 的对象地址修改为北京市朝阳区，<br>代码如下，对应命令为<code>db.dept.update({&quot;deptno&quot;:20},{$set:{&quot;loc&quot;:&quot;北京市朝阳区&quot;}})</code></p>
+<pre><code>@Test
+public void updateDept() throws Exception {
+    MongoClient mongo = new MongoClient();
+    DB db = mongo.getDB(&quot;java&quot;);
+    DBCollection dept = db.getCollection(&quot;dept&quot;);
+    BasicDBObject q = new BasicDBObject();//创建修改条件对象
+    q.put(&quot;deptno&quot;, 20);//{&quot;deptno&quot;:20} 放入修改条件
+    BasicDBObject dbObj = new BasicDBObject(); //创建所要修改对象
+    BasicDBObject attr = new BasicDBObject(); //创建修改内容对象
+    attr.put(&quot;loc&quot;, &quot;北京市朝阳区&quot;);//{&quot;loc&quot;:&quot;北京市朝阳区&quot;} 放入修改内容
+    dbObj.put(&quot;$set&quot;, attr); //设置局部更新
+
+    dept.update(q, dbObj); //db.dept.update({&quot;deptno&quot;:20},{$set:{&quot;loc&quot;:&quot;北京市朝阳区&quot;}})
+    mongo.close();
+}
+</code></pre><p>运行后，再运行查询的方法，结果如下</p>
+<pre><code>20 行政部 北京市朝阳区
+30 财务部 上海
+--------------
+</code></pre><h3 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h3><p>删除集合中 loc 为上海的数据，对应命令为<code>db.dept.remove({&quot;loc&quot;:&quot;上海&quot;})</code></p>
+<pre><code>@Test
+public void deleteDept() throws Exception {
+    MongoClient mongo = new MongoClient();
+    DB db = mongo.getDB(&quot;java&quot;);
+    DBCollection dept = db.getCollection(&quot;dept&quot;);
+    BasicDBObject dbObj = new BasicDBObject(); //创建删除条件对象
+    dbObj.put(&quot;loc&quot;, &quot;上海&quot;); //添加删除条件
+    dept.remove(dbObj); //根据条件删除 
+}
+</code></pre><p>运行后，再运行查询的方法，结果如下</p>
+<pre><code>20 行政部 北京市朝阳区
+--------------
+</code></pre><h2 id="SpringBoot-中操作-MongoDB"><a href="#SpringBoot-中操作-MongoDB" class="headerlink" title="SpringBoot 中操作 MongoDB"></a>SpringBoot 中操作 MongoDB</h2><p>在 java 原生操作中，需要用到 json 的地方都得封装成 BasicDBObject 类型的对象，而在 SpringBoot 中对其做了封装，直接用普通对象就可以了</p>
+<p>1.创建 maven 项目，引入对应 jar 包，配置 pom.xml，具体如下</p>
+<pre><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.4.7.RELEASE&lt;/version&gt;
+&lt;/parent&gt;
+
+&lt;dependencies&gt;
+    &lt;!-- spring test --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;!-- mongodb --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre><p>2.在 application.properties 里配置 mongodb连接信息，具体如下</p>
+<pre><code>spring.data.mongodb.uri=mongodb://localhost:27017/java
+</code></pre><p>3.配置主启动类</p>
+<pre><code>@SpringBootApplication
+public class BootApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(BootApplication.class);
+    }
+}
+</code></pre><p>4.实体类</p>
+<pre><code>public class Emp {
+    private int no;
+    private String name;
+    private int age;
+    private int deptNo;
+    //省略无参、有参构造方法，get、set 方法。
+｝
+</code></pre><p>5.测试类，SpringBoot 框架封装了 MongoTemplate，方便操作，增删改查如下：</p>
+<pre><code>@RunWith(SpringRunner.class)
+@SpringBootTest(classes= {BootApplication.class})
+public class MongoTest {
+
+    //注入 MongoTemplate
+    @Autowired
+    private MongoTemplate mongo;
+
+    @Test
+    public void insertEmp() {
+        Emp emp = new Emp(1,&quot;李四&quot;,22,1);
+        //将 emp 对象写入到 mongodb
+        mongo.insert(emp);//默认类型名首字母小写做集合名
+    }
+
+    @Test
+    public void selectAllEmp() {
+        List&lt;Emp&gt; emps = mongo.findAll(Emp.class);
+        for(Emp emp : emps)
+            System.out.println(emp);
+    }
+
+    @Test
+    public void selectEmp() {
+        Query query = new Query();
+        query.addCriteria(Criteria.where(&quot;no&quot;).is(1));//where no = 1
+        List&lt;Emp&gt; emps = mongo.find(query, Emp.class);
+        for(Emp emp : emps)
+            System.out.println(emp);
+    }
+
+    @Test
+    public void deleteEmp() {
+        Query query = new Query();
+        query.addCriteria(Criteria.where(&quot;no&quot;).is(1));//where no = 1
+        mongo.remove(query,Emp.class);//按指定条件删除
+    }
+
+    @Test
+    public void updateEmp() {
+        Query query = new Query();
+        query.addCriteria(Criteria.where(&quot;no&quot;).is(1));
+
+        Update update = new Update();
+        update.set(&quot;name&quot;, &quot;赵六&quot;);
+
+        //mongo.updateFirst(query, update, Emp.class); // 更新一条
+        mongo.updateMulti(query, update, Emp.class); // 更新多条
+    }
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+            <a href="/tags/NoSQL/" rel="tag"># NoSQL</a>
+          
+            <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+          
+            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/08/MongoDBStudy/" rel="next" title="MongoDB学习笔记">
+                <i class="fa fa-chevron-left"></i> MongoDB学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Enoch</p>
+              <p class="site-description motion-element" itemprop="description">爱是永不止息</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-原生操作-MongoDB"><span class="nav-number">1.</span> <span class="nav-text">Java 原生操作 MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取数据库列表"><span class="nav-number">1.1.</span> <span class="nav-text">获取数据库列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加数据到集合"><span class="nav-number">1.2.</span> <span class="nav-text">添加数据到集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询集合"><span class="nav-number">1.3.</span> <span class="nav-text">查询集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改集合"><span class="nav-number">1.4.</span> <span class="nav-text">修改集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除集合"><span class="nav-number">1.5.</span> <span class="nav-text">删除集合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot-中操作-MongoDB"><span class="nav-number">2.</span> <span class="nav-text">SpringBoot 中操作 MongoDB</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enoch</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
