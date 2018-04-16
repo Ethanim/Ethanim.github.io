@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,CentOS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="准备工作 下载 CentOS 镜像文件，官网： https://www.centos.org 下载并安装 VMware 创建如下目录，mv 用于存放虚拟机文件，dk 用于存放虚拟机磁盘文件  创建虚拟机打开 VMware 软件，新建虚拟机，并下一步，没截图的地方，默认配置，下一步即可 选择 CentOS7 镜像文件 设置虚拟机名称，选择虚拟机存放位置，刚创建的 vm 目录 选择 NAT 模式 选择">
+<meta name="keywords" content="Linux,CentOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在装虚拟机中安装 CentOS7 并配置">
+<meta property="og:url" content="http://yoursite.com/2018/04/16/LinuxStudy/index.html">
+<meta property="og:site_name" content="以诺网">
+<meta property="og:description" content="准备工作 下载 CentOS 镜像文件，官网： https://www.centos.org 下载并安装 VMware 创建如下目录，mv 用于存放虚拟机文件，dk 用于存放虚拟机磁盘文件  创建虚拟机打开 VMware 软件，新建虚拟机，并下一步，没截图的地方，默认配置，下一步即可 选择 CentOS7 镜像文件 设置虚拟机名称，选择虚拟机存放位置，刚创建的 vm 目录 选择 NAT 模式 选择">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/linux1.png">
+<meta property="og:image" content="http://yoursite.com/img/linux2.png">
+<meta property="og:image" content="http://yoursite.com/img/linux3.png">
+<meta property="og:image" content="http://yoursite.com/img/linux4.png">
+<meta property="og:image" content="http://yoursite.com/img/linux5.png">
+<meta property="og:image" content="http://yoursite.com/img/linux6.png">
+<meta property="og:image" content="http://yoursite.com/img/linux7.png">
+<meta property="og:image" content="http://yoursite.com/img/linux8.png">
+<meta property="og:image" content="http://yoursite.com/img/linux9.png">
+<meta property="og:image" content="http://yoursite.com/img/linux10.png">
+<meta property="og:image" content="http://yoursite.com/img/linux11.png">
+<meta property="og:image" content="http://yoursite.com/img/linux12.png">
+<meta property="og:image" content="http://yoursite.com/img/linux13.png">
+<meta property="og:image" content="http://yoursite.com/img/linux14.png">
+<meta property="og:image" content="http://yoursite.com/img/linux15.png">
+<meta property="og:image" content="http://yoursite.com/img/linux16.png">
+<meta property="og:image" content="http://yoursite.com/img/linux17.png">
+<meta property="og:image" content="http://yoursite.com/img/linux18.png">
+<meta property="og:image" content="http://yoursite.com/img/linux19.png">
+<meta property="og:image" content="http://yoursite.com/img/linux20.png">
+<meta property="og:image" content="http://yoursite.com/img/linux21.png">
+<meta property="og:image" content="http://yoursite.com/img/linux22.png">
+<meta property="og:image" content="http://yoursite.com/img/linux23.png">
+<meta property="og:image" content="http://yoursite.com/img/linux24.png">
+<meta property="og:image" content="http://yoursite.com/img/linux25.png">
+<meta property="og:image" content="http://yoursite.com/img/linux26.png">
+<meta property="og:image" content="http://yoursite.com/img/linux27.png">
+<meta property="og:image" content="http://yoursite.com/img/linux28.png">
+<meta property="og:image" content="http://yoursite.com/img/linux29.png">
+<meta property="og:image" content="http://yoursite.com/img/linux30.png">
+<meta property="og:image" content="http://yoursite.com/img/linux31.png">
+<meta property="og:image" content="http://yoursite.com/img/linux32.png">
+<meta property="og:image" content="http://yoursite.com/img/linux33.png">
+<meta property="og:updated_time" content="2018-04-16T14:06:51.166Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在装虚拟机中安装 CentOS7 并配置">
+<meta name="twitter:description" content="准备工作 下载 CentOS 镜像文件，官网： https://www.centos.org 下载并安装 VMware 创建如下目录，mv 用于存放虚拟机文件，dk 用于存放虚拟机磁盘文件  创建虚拟机打开 VMware 软件，新建虚拟机，并下一步，没截图的地方，默认配置，下一步即可 选择 CentOS7 镜像文件 设置虚拟机名称，选择虚拟机存放位置，刚创建的 vm 目录 选择 NAT 模式 选择">
+<meta name="twitter:image" content="http://yoursite.com/img/linux1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/16/LinuxStudy/"/>
+
+
+
+
+
+  <title>在装虚拟机中安装 CentOS7 并配置 | 以诺网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">以诺网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/16/LinuxStudy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enoch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以诺网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在装虚拟机中安装 CentOS7 并配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T20:10:38+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+<li>下载 CentOS 镜像文件，官网： <a href="https://www.centos.org" target="_blank" rel="noopener">https://www.centos.org</a></li>
+<li>下载并安装 VMware</li>
+<li>创建如下目录，mv 用于存放虚拟机文件，dk 用于存放虚拟机磁盘文件<br><img src="/img/linux1.png" alt=""></li>
+</ol>
+<h2 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h2><p>打开 VMware 软件，新建虚拟机，并下一步，没截图的地方，默认配置，下一步即可<br><img src="/img/linux2.png" alt=""></p>
+<p>选择 CentOS7 镜像文件<br><img src="/img/linux3.png" alt=""></p>
+<p>设置虚拟机名称，选择虚拟机存放位置，刚创建的 vm 目录<br><img src="/img/linux4.png" alt=""></p>
+<p>选择 NAT 模式<br><img src="/img/linux5.png" alt=""></p>
+<p>选择将磁盘拆分成多个文件，这样单个文件较小，方便管理<br><img src="/img/linux6.png" alt=""></p>
+<p>设置磁盘文件目录，刚创建的 dk 目录<br><img src="/img/linux7.png" alt=""></p>
+<p>勾选上创建后开启此虚拟机，并点击完成<br><img src="/img/linux8.png" alt=""></p>
+<p>可以用上下来移动光标，回车确认选择安装<br><img src="/img/linux9.png" alt=""></p>
+<p>再次回车确认<br><img src="/img/linux10.png" alt=""></p>
+<p>等待一会，出现如下界面，往下拉，选择中文即可<br><img src="/img/linux11.png" alt=""><br>点击安装源<br><img src="/img/linux12.png" alt=""><br>点击完成，默认设置即可<br><img src="/img/linux13.png" alt=""><br>点击安装位置<br><img src="/img/linux14.png" alt=""><br>点击完成，默认设置即可<br><img src="/img/linux15.png" alt=""><br>开始安装<br><img src="/img/linux16.png" alt=""><br>正在安装中，等待约 10 分钟<br><img src="/img/linux17.png" alt=""><br>设置 ROOT 用户的密码，密码设置简单的话，需要点击两次完成<br><img src="/img/linux18.png" alt=""><br>等待安装完成<br><img src="/img/linux19.png" alt=""><br>安装完成，重启<br><img src="/img/linux20.png" alt=""></p>
+<h2 id="配置虚拟机"><a href="#配置虚拟机" class="headerlink" title="配置虚拟机"></a>配置虚拟机</h2><p>输入 root 用户名，所设置的密码，即可进入，注意：密码输入不显示<br><img src="/img/linux21.png" alt=""><br>看到次界面，就代表登陆成功<br><img src="/img/linux22.png" alt=""><br>虚拟机名称右键，设置，网络适配器，确认选择 NAT 模式<br><img src="/img/linux23.png" alt=""><br>编辑，虚拟机网络编辑器<br><img src="/img/linux24.png" alt=""><br>选择 NAT 模式，分别查看 NAT 设置与 DHCP 设置<br><img src="/img/linux25.png" alt=""><br>查看 NAT 设置，记录子网掩码与网关，一会会用到<br><img src="/img/linux26.png" alt=""><br>查看 DHCP 设置，选择一个在起始，结束之间的 ip 地址并记录<br><img src="/img/linux27.png" alt=""><br>在本机查看网络状态，如果是用网线就查看对应的状态<br><img src="/img/linux28.png" alt=""><br>详细信息，记录 DNS 服务器地址<br><img src="/img/linux29.png" alt=""><br>进入 linux 命令窗口，输入命令 <code>vi /etc/sysconfig/network-scripts/ifcfg-ens33</code>，即看到如下配置信息<br><img src="/img/linux30.png" alt=""><br>修改 <code>BOOTPROTO=static</code> 代表 ip 设置为静态的，修改 <code>ONBOOT=yes</code>，代表系统启动就开启网络，并添加之前所记录的信息，具体如下（i 命令进入修改，修改完成后，按 esc，wq 保存并退出）</p>
+<pre><code>IPADDR=192.168.40.128
+GATEWAY=192.168.40.2
+NETMASK=255.255.255.0
+DNS1=192.168.43.1
+</code></pre><p><img src="/img/linux31.png" alt=""><br>用<code>clear</code>命令清屏，输入 <code>service network restart</code>使配置文件生效，输入<code>ifconfig</code>命令，查看设置后的 ip 地址<br><img src="/img/linux32.png" alt=""><br>分别 ping 本地电脑 ip 地址，与百度地址，即可查看是否配置成功<br>可以看到 www.baidu.com 只是一个别名，真实地址为 www.a.shifen.com<br><img src="/img/linux33.png" alt=""><br>到此，就安装并配置好 CentOS7 虚拟机了</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/11/DataBaseTransaction/" rel="next" title="数据库事务的四大特性及事务的四种隔离级别">
+                <i class="fa fa-chevron-left"></i> 数据库事务的四大特性及事务的四种隔离级别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/16/LinuxStudy2/" rel="prev" title="Linux 下搭建 Java 环境">
+                Linux 下搭建 Java 环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Enoch</p>
+              <p class="site-description motion-element" itemprop="description">爱是永不止息</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建虚拟机"><span class="nav-number">2.</span> <span class="nav-text">创建虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置虚拟机"><span class="nav-number">3.</span> <span class="nav-text">配置虚拟机</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enoch</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
