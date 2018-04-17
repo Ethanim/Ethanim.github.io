@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Java,Linux," />
+  <meta name="keywords" content="Java,MySQL,Linux,Tomcat," />
 
 
 
@@ -105,13 +105,13 @@
 
 
 
-<meta name="description" content="上一篇文章演示了在虚拟机中安装 CentOS7，下面介绍如何在 Linux 下搭建 Java 环境 采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启 执行如下命令，进入 /opt 目录，创建并进入 java7 目录 cd /opt mkdir java7 cd java7 采用 WinSCP 软件连接到虚拟机，这个软件可以上传本地文件到虚拟机里上">
-<meta name="keywords" content="Java,Linux">
+<meta name="description" content="上一篇文章演示了在虚拟机中安装 CentOS7，下面介绍如何在 Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器 配置 Java 环境采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启 执行如下命令，进入 /opt 目录，创建并进入 java7 目录 cd /opt mkdir java7 cd java7 采用 Win">
+<meta name="keywords" content="Java,MySQL,Linux,Tomcat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 下搭建 Java 环境">
+<meta property="og:title" content="Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器">
 <meta property="og:url" content="http://yoursite.com/2018/04/16/LinuxStudy2/index.html">
 <meta property="og:site_name" content="以诺网">
-<meta property="og:description" content="上一篇文章演示了在虚拟机中安装 CentOS7，下面介绍如何在 Linux 下搭建 Java 环境 采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启 执行如下命令，进入 /opt 目录，创建并进入 java7 目录 cd /opt mkdir java7 cd java7 采用 WinSCP 软件连接到虚拟机，这个软件可以上传本地文件到虚拟机里上">
+<meta property="og:description" content="上一篇文章演示了在虚拟机中安装 CentOS7，下面介绍如何在 Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器 配置 Java 环境采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启 执行如下命令，进入 /opt 目录，创建并进入 java7 目录 cd /opt mkdir java7 cd java7 采用 Win">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/linux34.png">
 <meta property="og:image" content="http://yoursite.com/img/linux35.png">
@@ -121,10 +121,34 @@
 <meta property="og:image" content="http://yoursite.com/img/linux39.png">
 <meta property="og:image" content="http://yoursite.com/img/linux40.png">
 <meta property="og:image" content="http://yoursite.com/img/linux41.png">
-<meta property="og:updated_time" content="2018-04-16T14:26:06.487Z">
+<meta property="og:image" content="http://yoursite.com/img/linux42.png">
+<meta property="og:image" content="http://yoursite.com/img/linux43.png">
+<meta property="og:image" content="http://yoursite.com/img/linux44.png">
+<meta property="og:image" content="http://yoursite.com/img/linux45.png">
+<meta property="og:image" content="http://yoursite.com/img/linux46.png">
+<meta property="og:image" content="http://yoursite.com/img/linux47.png">
+<meta property="og:image" content="http://yoursite.com/img/linux48.png">
+<meta property="og:image" content="http://yoursite.com/img/linux49.png">
+<meta property="og:image" content="http://yoursite.com/img/linux50.png">
+<meta property="og:image" content="http://yoursite.com/img/linux51.png">
+<meta property="og:image" content="http://yoursite.com/img/linux52.png">
+<meta property="og:image" content="http://yoursite.com/img/linux53.png">
+<meta property="og:image" content="http://yoursite.com/img/linux54.png">
+<meta property="og:image" content="http://yoursite.com/img/linux55.png">
+<meta property="og:image" content="http://yoursite.com/img/linux56.png">
+<meta property="og:image" content="http://yoursite.com/img/linux57.png">
+<meta property="og:image" content="http://yoursite.com/img/linux58.png">
+<meta property="og:image" content="http://yoursite.com/img/linux59.png">
+<meta property="og:image" content="http://yoursite.com/img/linux60.png">
+<meta property="og:image" content="http://yoursite.com/img/linux61.png">
+<meta property="og:image" content="http://yoursite.com/img/linux62.png">
+<meta property="og:image" content="http://yoursite.com/img/linux63.png">
+<meta property="og:image" content="http://yoursite.com/img/linux64.png">
+<meta property="og:image" content="http://yoursite.com/img/linux65.png">
+<meta property="og:updated_time" content="2018-04-17T11:04:02.894Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 下搭建 Java 环境">
-<meta name="twitter:description" content="上一篇文章演示了在虚拟机中安装 CentOS7，下面介绍如何在 Linux 下搭建 Java 环境 采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启 执行如下命令，进入 /opt 目录，创建并进入 java7 目录 cd /opt mkdir java7 cd java7 采用 WinSCP 软件连接到虚拟机，这个软件可以上传本地文件到虚拟机里上">
+<meta name="twitter:title" content="Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器">
+<meta name="twitter:description" content="上一篇文章演示了在虚拟机中安装 CentOS7，下面介绍如何在 Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器 配置 Java 环境采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启 执行如下命令，进入 /opt 目录，创建并进入 java7 目录 cd /opt mkdir java7 cd java7 采用 Win">
 <meta name="twitter:image" content="http://yoursite.com/img/linux34.png">
 
 
@@ -161,7 +185,7 @@
 
 
 
-  <title>Linux 下搭建 Java 环境 | 以诺网</title>
+  <title>Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器 | 以诺网</title>
   
 
 
@@ -315,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux 下搭建 Java 环境</h1>
+          <h1 class="post-title" itemprop="name headline">Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器</h1>
         
 
         <div class="post-meta">
@@ -387,8 +411,8 @@
       
 
       
-        <p><a href="http://www.enoch.site/2018/04/16/LinuxStudy/" target="_blank" rel="noopener">上一篇文章演示了在虚拟机中安装 CentOS7</a>，下面介绍如何在 Linux 下搭建 Java 环境</p>
-<p>采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启<br><img src="/img/linux34.png" alt=""></p>
+        <p><a href="http://www.enoch.site/2018/04/16/LinuxStudy/" target="_blank" rel="noopener">上一篇文章演示了在虚拟机中安装 CentOS7</a>，下面介绍如何在 Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器</p>
+<h2 id="配置-Java-环境"><a href="#配置-Java-环境" class="headerlink" title="配置 Java 环境"></a>配置 Java 环境</h2><p>采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启<br><img src="/img/linux34.png" alt=""></p>
 <p>执行如下命令，进入 /opt 目录，创建并进入 java7 目录</p>
 <pre><code>cd /opt
 mkdir java7
@@ -401,6 +425,82 @@ cd java7
 export CLASSPATH=$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 export PATH=$PATH:$JAVA_HOME/bin
 </code></pre><p><img src="/img/linux40.png" alt=""><br>执行<code>source ~/.bash_profile</code>，使配置文件生效，执行<code>java -version</code>，查看 jdk 版本<br><img src="/img/linux41.png" alt=""><br>到此，Linux 下就搭建好了 Java 环境</p>
+<h2 id="安装-tomcat"><a href="#安装-tomcat" class="headerlink" title="安装 tomcat"></a>安装 tomcat</h2><p>开启虚拟机，用 WinSCP 上传 tomcat 到 Linux 上<br><img src="/img/linux42.png" alt=""><br>用 SecureCRT 工具连接 Linux，进入 /opt 目录，并执行如下命令，给 tomcat 设置全部权限</p>
+<pre><code>cd /opt
+chmod -R 777 apache-tomcat-7.0.67/
+</code></pre><p>如图，可以看到读写执行权限开启<br><img src="/img/linux43.png" alt=""><br><img src="/img/linux44.png" alt=""><br>进入到 tomcat 的 bin 目录，执行如下命令，开启 tomcat 服务器</p>
+<pre><code>./startup.sh
+</code></pre><p><img src="/img/linux45.png" alt=""></p>
+<p>查看是否启动成功：<br>方法一：执行如下命令，进入 logs 文件夹下，查看日志信息，如无报错，并有启动时长，即代表成功</p>
+<pre><code>cd ..
+cd logs
+cat catalina.out
+</code></pre><p><img src="/img/linux46.png" alt=""></p>
+<p>方法二：执行如下命令，查看 tomcat 进程信息，9682 即为进程号，注意：进程号不固定，下次开启会换成别的</p>
+<pre><code>ps -ef|grep tomcat
+</code></pre><p><img src="/img/linux47.png" alt=""></p>
+<p>停止 tomcat 也有两种方式：<br>方法一：切换到 bin 目录下，执行如下命令，关闭 tomcat 服务器</p>
+<pre><code>./shutdown.sh
+</code></pre><p><img src="/img/linux48.png" alt=""></p>
+<p>方法二：使用 kill 命令，-9 代表强制关闭；-15 代表，让程序自己关闭，程序可能还会运行一会，会保存当前状态之类的，推荐使用 -15</p>
+<pre><code>kill -15 9867
+kill -9 9867
+</code></pre><p>再次执行 <code>ps -ef|grep tomcat</code> 命令，看到如下，就代表关闭成功<br><img src="/img/linux49.png" alt=""><br>到此，就介绍了 tomcat 在 Linux 上的配置、开启与关闭。</p>
+<h2 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h2><p><img src="/img/linux50.png" alt=""></p>
+<p>进入 /opt 目录下，输入如下命令，创建 mysql57 文件夹</p>
+<pre><code>mkdir mysql57
+</code></pre><p>进入 /opt/mysql57 文件夹下，执行如下命令，下载 mysql</p>
+<pre><code>wget http://repo.mysql.com/mysql57-community-release-el7-11.noarch.rpm
+</code></pre><p><img src="/img/linux51.png" alt=""></p>
+<p>此时会提示，未找到命令，执行 <code>yum install wget -y</code>，在线安装 <code>wget</code> 命令，如下图就安装成功</p>
+<p><img src="/img/linux52.png" alt=""></p>
+<p>再次执行如下命令，在线下载 mysql</p>
+<pre><code>wget http://repo.mysql.com/mysql57-community-release-el7-11.noarch.rpm
+</code></pre><p><img src="/img/linux53.png" alt=""></p>
+<p>再执行如下命令</p>
+<pre><code>sudo rpm -ivh mysql57-community-release-el7-11.noarch.rpm
+</code></pre><p><img src="/img/linux54.png" alt=""></p>
+<p>再执行如下命令，安装 mysql，会提示如下信息，直接按 y 确认即可，共需要按两次 y</p>
+<pre><code>sudo yum install mysql-server
+</code></pre><p><img src="/img/linux55.png" alt=""><br><img src="/img/linux56.png" alt=""><br>提示下图，就代表成功了<br><img src="/img/linux57.png" alt=""></p>
+<p>接下来配置 mysql 的相关信息,执行如下命令，登录 mysql，会出现如下错误，这是因为没有权限</p>
+<pre><code>mysql -u root
+</code></pre><p><img src="/img/linux58.png" alt=""></p>
+<p>执行如下命令，修改权限</p>
+<pre><code>sudo chown -R root:root /var/lib/mysql
+</code></pre><p>执行如下命令，重启 mysql</p>
+<pre><code>service mysqld restart
+</code></pre><p>再次登录，执行如下命令，通过 WinSCP 工具找到密码所在文件，/var/log/mysqld.log 里，如下图，密码为：9fLGGtk7Pl&gt;v</p>
+<pre><code>mysql -u root -p
+</code></pre><p><img src="/img/linux59.png" alt=""></p>
+<p>接下来执行如下命令，修改初始密码，会提示密码不符合当前安全策略</p>
+<pre><code>alter user user() identified by &apos;enoch.site&apos;;
+</code></pre><p><img src="/img/linux60.png" alt=""></p>
+<p>执行如下命令，修改密码安全策略，再次修改密码</p>
+<pre><code>set global validate_password_policy=0;
+alter user user() identified by &apos;enoch.site&apos;;
+</code></pre><p><img src="/img/linux61.png" alt=""></p>
+<p>执行如下命令，退出，重启 mysql 数据库，用新密码登录</p>
+<pre><code>exit;
+service mysqld restart #退出 mysql后执行的
+mysql -u root -p
+</code></pre><p>这样就修改好了密码，在本地用数据库连接工具连接 Linux 上的 mysql</p>
+<p><img src="/img/linux62.png" alt=""></p>
+<p>会报 2003 错误，是因为防火墙给拦截了，下面的命令，设置防火墙允许 3306 端口可以进出</p>
+<pre><code>/sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT
+</code></pre><p><img src="/img/linux63.png" alt=""></p>
+<p>再次连接，会报 1130 错误，原因是默认只能 localhost 访问，修改为 host=’%’，即所有地址都能访问，在给 root 用户设置权限，即可</p>
+<pre><code>mysql -u root -p
+use mysql;
+#修改 访问地址为 %（% 代表任意地址）
+update user set host=&apos;%&apos; where user =&apos;root&apos; and host=&apos;localhost&apos;;
+select host,user from user;
+set global validate_password_policy=0;
+#给 root 用户，密码为 enoch.site 的用户授予所有权限
+grant all privileges on *.* to root@&apos;%&apos; identified by &apos;enoch.site&apos; with grant option;
+</code></pre><p><img src="/img/linux64.png" alt=""></p>
+<p>退出，重启 mysql 服务器 <code>service mysqld restart;</code>，再次测试连接，即可成功<br><img src="/img/linux65.png" alt=""></p>
+<p>到此，就在 linux 上配置好了 mysql 服务器</p>
 
       
     </div>
@@ -420,7 +520,11 @@ export PATH=$PATH:$JAVA_HOME/bin
           
             <a href="/tags/Java/" rel="tag"># Java</a>
           
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
             <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/Tomcat/" rel="tag"># Tomcat</a>
           
         </div>
       
@@ -442,6 +546,10 @@ export PATH=$PATH:$JAVA_HOME/bin
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/16/SQLPractice/" rel="prev" title="SQLPractice">
+                SQLPractice <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -495,8 +603,17 @@ export PATH=$PATH:$JAVA_HOME/bin
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -511,7 +628,7 @@ export PATH=$PATH:$JAVA_HOME/bin
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -533,7 +650,7 @@ export PATH=$PATH:$JAVA_HOME/bin
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -556,6 +673,22 @@ export PATH=$PATH:$JAVA_HOME/bin
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Java-环境"><span class="nav-number">1.</span> <span class="nav-text">配置 Java 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-tomcat"><span class="nav-number">2.</span> <span class="nav-text">安装 tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-mysql"><span class="nav-number">3.</span> <span class="nav-text">安装 mysql</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
