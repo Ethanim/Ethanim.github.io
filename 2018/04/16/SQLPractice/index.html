@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="MySQL,Oracle,SQL," />
 
 
 
@@ -105,17 +105,25 @@
 
 
 
-<meta name="description" content="爱是永不止息">
+<meta name="description" content="同学发的某公司的笔试题，有三道 SQL 题，这里一起学习下 题一表如下，删除 ic_model 和 ic_group 想等的记录，但保留 ic_id 为最大的一条记录用下面的图举例：即删除 ic_id 为 3、4 的记录  建表1234567CREATE TABLE `user_ic_table` (  `IC_ID` int(11) DEFAULT NULL,  `User_ID` int(11">
+<meta name="keywords" content="MySQL,Oracle,SQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQLPractice">
+<meta property="og:title" content="三道 SQL 笔试题详解">
 <meta property="og:url" content="http://yoursite.com/2018/04/16/SQLPractice/index.html">
 <meta property="og:site_name" content="以诺网">
-<meta property="og:description" content="爱是永不止息">
+<meta property="og:description" content="同学发的某公司的笔试题，有三道 SQL 题，这里一起学习下 题一表如下，删除 ic_model 和 ic_group 想等的记录，但保留 ic_id 为最大的一条记录用下面的图举例：即删除 ic_id 为 3、4 的记录  建表1234567CREATE TABLE `user_ic_table` (  `IC_ID` int(11) DEFAULT NULL,  `User_ID` int(11">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-16T14:36:34.762Z">
+<meta property="og:image" content="http://yoursite.com/img/sql1.png">
+<meta property="og:image" content="http://yoursite.com/img/sql2.png">
+<meta property="og:image" content="http://yoursite.com/img/sql3.png">
+<meta property="og:image" content="http://yoursite.com/img/sql4.png">
+<meta property="og:image" content="http://yoursite.com/img/sql5.png">
+<meta property="og:image" content="http://yoursite.com/img/sql6.png">
+<meta property="og:updated_time" content="2018-04-18T11:04:53.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQLPractice">
-<meta name="twitter:description" content="爱是永不止息">
+<meta name="twitter:title" content="三道 SQL 笔试题详解">
+<meta name="twitter:description" content="同学发的某公司的笔试题，有三道 SQL 题，这里一起学习下 题一表如下，删除 ic_model 和 ic_group 想等的记录，但保留 ic_id 为最大的一条记录用下面的图举例：即删除 ic_id 为 3、4 的记录  建表1234567CREATE TABLE `user_ic_table` (  `IC_ID` int(11) DEFAULT NULL,  `User_ID` int(11">
+<meta name="twitter:image" content="http://yoursite.com/img/sql1.png">
 
 
 
@@ -151,7 +159,7 @@
 
 
 
-  <title>SQLPractice | 以诺网</title>
+  <title>三道 SQL 笔试题详解 | 以诺网</title>
   
 
 
@@ -305,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SQLPractice</h1>
+          <h1 class="post-title" itemprop="name headline">三道 SQL 笔试题详解</h1>
         
 
         <div class="post-meta">
@@ -327,6 +335,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -355,7 +385,31 @@
       
 
       
-        
+        <p>同学发的某公司的笔试题，有三道 SQL 题，这里一起学习下</p>
+<h2 id="题一"><a href="#题一" class="headerlink" title="题一"></a>题一</h2><p>表如下，删除 ic_model 和 ic_group 想等的记录，但保留 ic_id 为最大的一条记录<br>用下面的图举例：即删除 ic_id 为 3、4 的记录</p>
+<p><img src="/img/sql1.png" alt=""></p>
+<h3 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user_ic_table`</span> (</span><br><span class="line">  <span class="string">`IC_ID`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`User_ID`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`IC_Model`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`IC_Group`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`IC_Num`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+<h3 id="插入测试数据"><a href="#插入测试数据" class="headerlink" title="插入测试数据"></a>插入测试数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_ic_table`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'1'</span>, <span class="string">'AD1981BJST'</span>, <span class="string">'QFP'</span>, <span class="string">'2000'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_ic_table`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'1'</span>, <span class="string">'AD1981BJST'</span>, <span class="string">'BGA'</span>, <span class="string">'3000'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_ic_table`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'1'</span>, <span class="string">'AD1886J5T'</span>, <span class="string">'QFP'</span>, <span class="string">'3000'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_ic_table`</span> <span class="keyword">VALUES</span> (<span class="string">'4'</span>, <span class="string">'1'</span>, <span class="string">'AD1886J5T'</span>, <span class="string">'QFP'</span>, <span class="string">'3000'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_ic_table`</span> <span class="keyword">VALUES</span> (<span class="string">'5'</span>, <span class="string">'2'</span>, <span class="string">'AD1886J5T'</span>, <span class="string">'QFP'</span>, <span class="string">'3000'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="分析与-SQL"><a href="#分析与-SQL" class="headerlink" title="分析与 SQL"></a>分析与 SQL</h3><p>方法一：首先，根据 ic_model,ic_group 分组，取 ic_id 最大的数据，这样就找出来所要保留的数据，然后，删除不在其中的数据，即可<br>方法二：通过别名，把一张表当作两张表来使用，并设置相应的删除条件，这么做，会产生笛卡尔积，速度慢，不推荐使用</p>
+<p>MySQL 写法<br>MySQL 需要在用 <code>select</code>语句嵌套一层，否则会报 <code>[Err] 1093 - You can&#39;t specify target table &#39;user_ic_table&#39; for update in FROM clause</code> 错误<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> user_ic_table <span class="keyword">where</span> ic_id <span class="keyword">not</span> <span class="keyword">in</span></span><br><span class="line">( <span class="keyword">select</span> * <span class="keyword">from</span></span><br><span class="line">	(<span class="keyword">select</span> <span class="keyword">max</span>(ic_id) <span class="keyword">from</span> user_ic_table <span class="keyword">group</span> <span class="keyword">by</span> ic_model,ic_group) t</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 该方法只能 MySQL 使用</span></span><br><span class="line"><span class="keyword">delete</span> p1 <span class="keyword">from</span> user_ic_table p1,user_ic_table p2 <span class="keyword">where</span> p1.ic_model=p2.ic_model </span><br><span class="line"><span class="keyword">and</span> p1.ic_group = p2.ic_group <span class="keyword">and</span> p1.ic_id &lt; p2.ic_id</span><br></pre></td></tr></table></figure></p>
+<p>Oracle 写法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> user_ic_table <span class="keyword">where</span> ic_id <span class="keyword">not</span> <span class="keyword">in</span> </span><br><span class="line">( <span class="keyword">select</span> <span class="keyword">max</span>(ic_id) <span class="keyword">from</span> user_ic_table  <span class="keyword">group</span> <span class="keyword">by</span> ic_model,ic_group );</span><br></pre></td></tr></table></figure></p>
+<h2 id="题二"><a href="#题二" class="headerlink" title="题二"></a>题二</h2><p>user 表如下，通过 SQL 查询，电话匹配‘1348’的排在最前面，地址匹配‘北京’的排在其次，其它不匹配的放在最后，且最终查询出来的数据不可重复</p>
+<p><img src="/img/sql2.png" alt=""></p>
+<h3 id="建表-1"><a href="#建表-1" class="headerlink" title="建表"></a>建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`age`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`sex`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`phone`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+<h3 id="插入测试数据-1"><a href="#插入测试数据-1" class="headerlink" title="插入测试数据"></a>插入测试数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'小白'</span>, <span class="string">'18'</span>, <span class="string">'男'</span>, <span class="string">'北京'</span>, <span class="string">'13512341234'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'小黄'</span>, <span class="string">'20'</span>, <span class="string">'男'</span>, <span class="string">'上海'</span>, <span class="string">'12312341234'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'小紫'</span>, <span class="string">'22'</span>, <span class="string">'女'</span>, <span class="string">'天津'</span>, <span class="string">'12378977897'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'4'</span>, <span class="string">'小绿'</span>, <span class="string">'18'</span>, <span class="string">'男'</span>, <span class="string">'北京'</span>, <span class="string">'13645614561'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'6'</span>, <span class="string">'小粉'</span>, <span class="string">'25'</span>, <span class="string">'女'</span>, <span class="string">'深圳'</span>, <span class="string">'13481234122'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'5'</span>, <span class="string">'小红'</span>, <span class="string">'25'</span>, <span class="string">'女'</span>, <span class="string">'北京'</span>, <span class="string">'13481894121'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'6'</span>, <span class="string">'小粉'</span>, <span class="string">'25'</span>, <span class="string">'女'</span>, <span class="string">'深圳'</span>, <span class="string">'13481234122'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="分析与-SQL-1"><a href="#分析与-SQL-1" class="headerlink" title="分析与 SQL"></a>分析与 SQL</h3><p>首先设置 order by 的排序条件，like “1348%” desc,address=’北京’ desc，分别降序排列，在加去重关键字就 ok 了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">order</span> <span class="keyword">by</span> phone <span class="keyword">like</span> <span class="string">"1348%"</span> <span class="keyword">desc</span>,address=<span class="string">'北京'</span> <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
+<h2 id="题三"><a href="#题三" class="headerlink" title="题三"></a>题三</h2><p>一共三个表，user2 表，sex 表， provice 表</p>
+<p><img src="/img/sql3.png" alt=""></p>
+<p><img src="/img/sql4.png" alt=""></p>
+<p><img src="/img/sql5.png" alt=""></p>
+<p>根据上面三个表格的字段，用一条 SQL 语句查询得到如下结果：</p>
+<p><img src="/img/sql6.png" alt=""></p>
+<h3 id="建表-2"><a href="#建表-2" class="headerlink" title="建表"></a>建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user2`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`sexType`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`proviceID`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`sex`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`title`</span> <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`sexType`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`provice`</span> (</span><br><span class="line">  <span class="string">`proviceID`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`title`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+<h3 id="插入测试数据-2"><a href="#插入测试数据-2" class="headerlink" title="插入测试数据"></a>插入测试数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user2`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'张三'</span>, <span class="string">'1'</span>, <span class="string">'3'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user2`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'李四'</span>, <span class="string">'1'</span>, <span class="string">'2'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user2`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'王五'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`sex`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'男'</span>, <span class="string">'2'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`sex`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'女'</span>, <span class="string">'1'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`provice`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'湖南'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`provice`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'广东'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`provice`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'湖北'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="分析与-SQL-2"><a href="#分析与-SQL-2" class="headerlink" title="分析与 SQL"></a>分析与 SQL</h3><p>就是三表连接，在筛选条件，查询字段为所需要的内容，再加上别名即可</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> u.name 姓名,p.title 省份,s.title 性别</span><br><span class="line"><span class="keyword">from</span> user2 u <span class="keyword">join</span> sex s <span class="keyword">on</span> u.sexType=s.sexType</span><br><span class="line"><span class="keyword">join</span> provice p <span class="keyword">on</span> u.proviceID=p.proviceID </span><br><span class="line"><span class="keyword">where</span> u.name=<span class="string">'李四'</span> <span class="keyword">and</span> p.title=<span class="string">'广东'</span> <span class="keyword">and</span> s.title=<span class="string">'女'</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -369,6 +423,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/Oracle/" rel="tag"># Oracle</a>
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+        </div>
       
 
       
@@ -441,8 +505,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -502,6 +575,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题一"><span class="nav-number">1.</span> <span class="nav-text">题一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建表"><span class="nav-number">1.1.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入测试数据"><span class="nav-number">1.2.</span> <span class="nav-text">插入测试数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析与-SQL"><span class="nav-number">1.3.</span> <span class="nav-text">分析与 SQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题二"><span class="nav-number">2.</span> <span class="nav-text">题二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建表-1"><span class="nav-number">2.1.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入测试数据-1"><span class="nav-number">2.2.</span> <span class="nav-text">插入测试数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析与-SQL-1"><span class="nav-number">2.3.</span> <span class="nav-text">分析与 SQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题三"><span class="nav-number">3.</span> <span class="nav-text">题三</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建表-2"><span class="nav-number">3.1.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入测试数据-2"><span class="nav-number">3.2.</span> <span class="nav-text">插入测试数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析与-SQL-2"><span class="nav-number">3.3.</span> <span class="nav-text">分析与 SQL</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
