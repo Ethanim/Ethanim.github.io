@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="以诺网">
 <meta property="og:description" content="先干货一面：1.Java和PHP的区别 2.讲讲，链表，队列，栈，和它们之间的关系 3.AOP原理，事务 4.介绍新技术，SpringBoot，SpringCloud 5.redis，适用哪里，优缺点 6.单例，动态代理 7.Linux命令，查看项目部署方面 8.一个上线的项目出了bug，一个正在做的项目，一个测试部测试出来，要求要解决的bug，先解决哪个？ 二面：1.写sql，学生表，课程表，成">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-18T13:48:56.858Z">
+<meta property="og:updated_time" content="2018-05-02T15:41:57.361Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="美团Java后台工程师，一面，二面，面经">
 <meta name="twitter:description" content="先干货一面：1.Java和PHP的区别 2.讲讲，链表，队列，栈，和它们之间的关系 3.AOP原理，事务 4.介绍新技术，SpringBoot，SpringCloud 5.redis，适用哪里，优缺点 6.单例，动态代理 7.Linux命令，查看项目部署方面 8.一个上线的项目出了bug，一个正在做的项目，一个测试部测试出来，要求要解决的bug，先解决哪个？ 二面：1.写sql，学生表，课程表，成">
@@ -412,10 +412,15 @@ Spring两大特性是什么？
 我说，AOP，IOC，解释了下。
 问我自己实现怎么实现IOC，我说了下，就感觉这个说的还行。
 最后让我等消息。
+作者：虚空的虚空，凡事都是虚空
+
+
+IOC我是这么说的，通过dom4j方式（这个忘说了）解析xml配置文件，能获取每一个bean的class属性里的值，这个值是全类名（包名+类名），用这个值.class，可以获取class对象，这个class对象，.newInstance()，可以获取该类的实例，把每个bean的id当作键，该实例当作值，存放在map集合里，调用的时候通过.getBean(id),即可获取对应的实例。
+面试官又问我，这个map存放在哪里？我说内存中，面试管说不是这个意思，具体给忘了，然后我说存放在ApplicationContext里。
+之前看过一些Spring原理，加上自己的理解和总结，就这样了
 </code></pre><h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><pre><code>一面时的问题，大部分是问简历上写的，然后有的问题在深入问。
 二面的时候就是具体的题了，sql确实没有练习，应该加强练习，算法题也不一定要写出来，思想很重要，以后多刷题。
-</code></pre><p>作者：虚空的虚空，凡事都是虚空<br>链接：<a href="https://www.nowcoder.com/discuss/69172" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/69172</a><br>来源：牛客网</p>
-
+</code></pre>
       
     </div>
     
