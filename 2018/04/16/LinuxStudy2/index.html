@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Java,MySQL,Linux,Tomcat," />
+  <meta name="keywords" content="Java,Linux,MySQL,Tomcat," />
 
 
 
@@ -106,7 +106,7 @@
 
 
 <meta name="description" content="上一篇文章演示了在虚拟机中安装 CentOS7，下面介绍如何在 Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器 配置 Java 环境采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启 执行如下命令，进入 /opt 目录，创建并进入 java7 目录 cd /opt mkdir java7 cd java7 采用 Win">
-<meta name="keywords" content="Java,MySQL,Linux,Tomcat">
+<meta name="keywords" content="Java,Linux,MySQL,Tomcat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器">
 <meta property="og:url" content="http://yoursite.com/2018/04/16/LinuxStudy2/index.html">
@@ -145,7 +145,7 @@
 <meta property="og:image" content="http://yoursite.com/img/linux63.png">
 <meta property="og:image" content="http://yoursite.com/img/linux64.png">
 <meta property="og:image" content="http://yoursite.com/img/linux65.png">
-<meta property="og:updated_time" content="2018-04-17T11:04:02.894Z">
+<meta property="og:updated_time" content="2018-05-02T12:18:39.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器">
 <meta name="twitter:description" content="上一篇文章演示了在虚拟机中安装 CentOS7，下面介绍如何在 Linux 下搭建 Java 环境、Tomcat 服务器，MySQL 服务器 配置 Java 环境采用 SecureCRT 连接虚拟机，采用这款软件连接，可以粘贴复制命令，比较方便，前提虚拟机得开启 执行如下命令，进入 /opt 目录，创建并进入 java7 目录 cd /opt mkdir java7 cd java7 采用 Win">
@@ -467,7 +467,7 @@ kill -9 9867
 <pre><code>mysql -u root
 </code></pre><p><img src="/img/linux58.png" alt=""></p>
 <p>执行如下命令，修改权限</p>
-<pre><code>sudo chown -R root:root /var/lib/mysql
+<pre><code>chmod -R 777 /var/lib/mysql
 </code></pre><p>执行如下命令，重启 mysql</p>
 <pre><code>service mysqld restart
 </code></pre><p>再次登录，执行如下命令，通过 WinSCP 工具找到密码所在文件，/var/log/mysqld.log 里，如下图，密码为：9fLGGtk7Pl&gt;v</p>
@@ -520,9 +520,9 @@ grant all privileges on *.* to root@&apos;%&apos; identified by &apos;enoch.site
           
             <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
-          
             <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
             <a href="/tags/Tomcat/" rel="tag"># Tomcat</a>
           
@@ -628,7 +628,7 @@ grant all privileges on *.* to root@&apos;%&apos; identified by &apos;enoch.site
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -639,7 +639,7 @@ grant all privileges on *.* to root@&apos;%&apos; identified by &apos;enoch.site
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
