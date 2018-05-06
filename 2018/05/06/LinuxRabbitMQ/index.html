@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,RabbitMQ," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="RabbitMQ 依赖于 Erlang ，所以得先下载安装 erlang 1.在官网下载下载 Erlang，http://www.erlang.org/downloads 2.在官网下载 RabbitMQ， http://www.rabbitmq.com/download.html 把下载好的两个压缩包上传到 Linux 上  安装依赖1yum install ncurses-devel 解压12">
+<meta name="keywords" content="Linux,RabbitMQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 下安装 RabbitMQ">
+<meta property="og:url" content="http://yoursite.com/2018/05/06/LinuxRabbitMQ/index.html">
+<meta property="og:site_name" content="以诺网">
+<meta property="og:description" content="RabbitMQ 依赖于 Erlang ，所以得先下载安装 erlang 1.在官网下载下载 Erlang，http://www.erlang.org/downloads 2.在官网下载 RabbitMQ， http://www.rabbitmq.com/download.html 把下载好的两个压缩包上传到 Linux 上  安装依赖1yum install ncurses-devel 解压12">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ1.png">
+<meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ2.png">
+<meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ3.png">
+<meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ4.png">
+<meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ5.png">
+<meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ6.png">
+<meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ7.png">
+<meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ8.png">
+<meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ9.png">
+<meta property="og:updated_time" content="2018-05-06T13:49:26.002Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 下安装 RabbitMQ">
+<meta name="twitter:description" content="RabbitMQ 依赖于 Erlang ，所以得先下载安装 erlang 1.在官网下载下载 Erlang，http://www.erlang.org/downloads 2.在官网下载 RabbitMQ， http://www.rabbitmq.com/download.html 把下载好的两个压缩包上传到 Linux 上  安装依赖1yum install ncurses-devel 解压12">
+<meta name="twitter:image" content="http://yoursite.com/img/LinuxRabbitMQ1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/06/LinuxRabbitMQ/"/>
+
+
+
+
+
+  <title>Linux 下安装 RabbitMQ | 以诺网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">以诺网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/06/LinuxRabbitMQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enoch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以诺网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux 下安装 RabbitMQ</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-06T21:45:14+08:00">
+                2018-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>RabbitMQ 依赖于 Erlang ，所以得先下载安装 erlang</p>
+<p>1.在官网下载下载 Erlang，<a href="http://www.erlang.org/downloads" target="_blank" rel="noopener">http://www.erlang.org/downloads</a><br><img src="/img/LinuxRabbitMQ1.png" alt=""></p>
+<p>2.在官网下载 RabbitMQ， <a href="http://www.rabbitmq.com/download.html" target="_blank" rel="noopener">http://www.rabbitmq.com/download.html</a><br><img src="/img/LinuxRabbitMQ2.png" alt=""><br><img src="/img/LinuxRabbitMQ3.png" alt=""></p>
+<p>把下载好的两个压缩包上传到 Linux 上</p>
+<p><img src="/img/LinuxRabbitMQ4.png" alt=""></p>
+<p>安装依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ncurses-devel</span><br></pre></td></tr></table></figure></p>
+<p>解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/rabbitmq</span><br><span class="line">tar xf otp_src_20.3.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>设置 Erlang 安装目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd otp_src_20.3</span><br><span class="line">./configure --prefix=/usr/local/erlang20 --without-javac</span><br></pre></td></tr></table></figure></p>
+<p>编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure></p>
+<p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<p>到这就安装好了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/erlang20</span><br><span class="line">cd bin</span><br><span class="line"></span><br><span class="line">#进入到 Eshell 里了，代表安装成功，ctrl+c 退出</span><br><span class="line">./erl</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/LinuxRabbitMQ5.png" alt=""></p>
+<p>安装 RabbitMQ</p>
+<p>解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/rabbitmq/</span><br><span class="line">xz -d rabbitmq-server-generic-unix-3.7.4.tar.xz</span><br><span class="line">tar xf rabbitmq-server-generic-unix-3.7.4.tar</span><br></pre></td></tr></table></figure></p>
+<p>安装 python 依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install python -y</span><br></pre></td></tr></table></figure></p>
+<p>安装 simplejson<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install xmlto -y</span><br><span class="line">yum install python-simplejson -y</span><br></pre></td></tr></table></figure></p>
+<p>写入环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br><span class="line"></span><br><span class="line">export PATH=$PATH:/usr/local/ruby/bin:/usr/local/erlang20/bin:/usr/local/rabbitmq/sbin</span><br><span class="line"></span><br><span class="line">:wq</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/LinuxRabbitMQ6.png" alt=""></p>
+<p>使环境变量生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure></p>
+<p>解压后，是已经安装好的，移动到目标位置，直接进入即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv rabbitmq_server-3.7.4/ /usr/local/rabbitmq</span><br><span class="line">cd /usr/local/rabbitmq/sbin</span><br></pre></td></tr></table></figure></p>
+<p>启动 RabbitMQ<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmq-server</span><br></pre></td></tr></table></figure></p>
+<p>我这里报了如下错误，一顿百度才解决，因为 缺少 openssl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">BOOT FAILED</span><br><span class="line">===========</span><br><span class="line"></span><br><span class="line">Error description:</span><br><span class="line">    init:do_boot/3</span><br><span class="line">    init:start_em/1</span><br><span class="line">    rabbit:start_it/1 line 445</span><br><span class="line">    rabbit:broker_start/0 line 319</span><br><span class="line">    rabbit_plugins:prepare_plugins/1 line 289</span><br><span class="line">    rabbit_plugins:ensure_dependencies/1 line 263</span><br><span class="line">throw:&#123;error,&#123;missing_dependencies,[crypto,ssl],</span><br><span class="line">                                   [amqp10_client,cowboy,cowlib,rabbitmq_aws,</span><br><span class="line">                                    rabbitmq_management,</span><br><span class="line">                                    rabbitmq_management_agent,rabbitmq_shovel,</span><br><span class="line">                                    rabbitmq_trust_store]&#125;&#125;</span><br><span class="line">Log file(s) (may contain more information):</span><br><span class="line">   /usr/local/rabbitmq/var/log/rabbitmq/rabbit@localhost.log</span><br><span class="line">   /usr/local/rabbitmq/var/log/rabbitmq/rabbit@localhost_upgrade.log</span><br><span class="line"></span><br><span class="line">&#123;&quot;init terminating in do_boot&quot;,&#123;error,&#123;missing_dependencies,[crypto,ssl],[amqp10_client,cowboy,cowlib,rabbitmq_aws,rabbitmq_management,rabbitmq_management_agent,rabbitmq_shovel,rabbitmq_trust_store]&#125;&#125;&#125;</span><br><span class="line">init terminating in do_boot (&#123;error,&#123;missing_dependencies,[crypto,ssl],[amqp10_client,cowboy,cowlib,rabbitmq_aws,rabbitmq_management,rabbitmq_management_agent,rabbitmq_shovel,rabbitmq_trust_store]&#125;&#125;)</span><br><span class="line"></span><br><span class="line">Crash dump is being written to: /usr/local/rabbitmq/var/log/rabbitmq/erl_crash.dump...done</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/LinuxRabbitMQ7.png" alt=""></p>
+<p>安装 openssl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">mkdir openssl</span><br><span class="line">cd openssl</span><br><span class="line"></span><br><span class="line"># 下载 openssl</span><br><span class="line">https://www.openssl.org/source/openssl-1.1.0e.tar.gz</span><br><span class="line"></span><br><span class="line"># 解压</span><br><span class="line">tar -zvxf openssl-1.1.0e.tar.gz</span><br><span class="line">cd openssl-1.1.0e</span><br><span class="line"></span><br><span class="line"># 指定安装目录</span><br><span class="line">./config --prefix=/usr/local/openssl</span><br><span class="line"></span><br><span class="line"># 修改 Makefile</span><br><span class="line">vi Makefile</span><br><span class="line"></span><br><span class="line"># 找到 CFLAGS=-DDSO_DLFCN -DHAVE_DLFCN_H -DNDEBUG -DOPENSSL_THREADS ，改为如下，就是添加了 -fPIC</span><br><span class="line">CFLAGS=-fPIC -DDSO_DLFCN -DHAVE_DLFCN_H -DNDEBUG -DOPENSSL_THREADS </span><br><span class="line"></span><br><span class="line"># 安装</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p><img src="/img/LinuxRabbitMQ8.png" alt=""></p>
+<p>重新安装 Eralng<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/rabbitmq/otp_src_20.3</span><br><span class="line">./configure --prefix=/usr/local/erlang20 --without-javac --with-ssl=/usr/local/openssl</span><br><span class="line">make&amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+<p>启动 RabbitMQ，ctrl+c 停止显示，然后可以敲命令，但 RabbitMQ 并没有关闭<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmq-server</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/LinuxRabbitMQ9.png" alt=""></p>
+<p>查看日志，启动时，会显示日志地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f /usr/local/rabbitmq/var/log/rabbitmq/rabbit@localhost.log</span><br></pre></td></tr></table></figure></p>
+<p>查看监听<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nap | grep 5672</span><br></pre></td></tr></table></figure></p>
+<p>关闭<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmqctl stop</span><br></pre></td></tr></table></figure></p>
+<p>查看进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep rabbitmq</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/04/LinuxNginx/" rel="next" title="Linux 下安装 Nginx">
+                <i class="fa fa-chevron-left"></i> Linux 下安装 Nginx
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Enoch</p>
+              <p class="site-description motion-element" itemprop="description">爱是永不止息</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enoch</span>
+
+  
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
