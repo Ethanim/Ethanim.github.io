@@ -122,7 +122,7 @@
 <meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ7.png">
 <meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ8.png">
 <meta property="og:image" content="http://yoursite.com/img/LinuxRabbitMQ9.png">
-<meta property="og:updated_time" content="2018-05-06T13:49:26.002Z">
+<meta property="og:updated_time" content="2018-05-07T11:42:17.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 下安装 RabbitMQ">
 <meta name="twitter:description" content="RabbitMQ 依赖于 Erlang ，所以得先下载安装 erlang 1.在官网下载下载 Erlang，http://www.erlang.org/downloads 2.在官网下载 RabbitMQ， http://www.rabbitmq.com/download.html 把下载好的两个压缩包上传到 Linux 上  安装依赖1yum install ncurses-devel 解压12">
@@ -421,7 +421,9 @@
 <p>查看监听<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nap | grep 5672</span><br></pre></td></tr></table></figure></p>
 <p>关闭<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmqctl stop</span><br></pre></td></tr></table></figure></p>
 <p>查看进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep rabbitmq</span><br></pre></td></tr></table></figure></p>
-
+<p>开端口号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/sbin/iptables -I INPUT -p tcp --dport 5672 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>默认 guest 用户只能访问本机，远程访问，需要如下设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/rabbitmq/etc/rabbitmq</span><br><span class="line">vi rabbitmq.config </span><br><span class="line"># 添加如下内容</span><br><span class="line">[&#123;rabbit, [&#123;loopback_users, []&#125;]&#125;].</span><br><span class="line"># 保存退出</span><br><span class="line">wq</span><br><span class="line"># 重启 RabbitMQ</span><br><span class="line">cd /usr/local/rabbitmq/sbin</span><br><span class="line">rabbitmqctl stop</span><br><span class="line">rabbitmq-server</span><br></pre></td></tr></table></figure>
       
     </div>
     
